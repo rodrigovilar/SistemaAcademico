@@ -170,7 +170,7 @@ public class SistemaTeste {
 	
 	
 	@Test(expected = com.excecoes.IdadeInvalidaException.class)
-	public void TestValidarTestIdadeAluno(){;
+	public void ValidarIdadeAluno(){;
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Pedro Nascimento");
 		aluno1.setCpf("222.222.333-2");
@@ -219,8 +219,16 @@ public class SistemaTeste {
 		
 		
 		}
-	}
 		
+	@Test(expected = com.excecoes.IdadeInvalidaException.class)
+	public void validarIdadeProfessor(){
+		Professor p1 = new Professor();
+		p1.setCpf("111.333.556-1");
+		p1.setIdade(14);
+		
+		assertEquals("Idade não Permitida, por gentileza informe uma idade acima de 18 anos", sistemaAcademico.validarIdade(p1));
+	}
 	
+}
 	
 	
