@@ -104,12 +104,16 @@ public class SistemaTeste {
 		disciplina1.setNome("IP");
 		Aluno aluno1 = new Aluno();
 		aluno1.setIdade(20);
+		aluno1.setCpf("111.222.333-4");
 		Aluno aluno2 = new Aluno();
 		aluno2.setIdade(30);
+		aluno2.setCpf("111.222.325-7");
 		Aluno aluno3 = new Aluno();
 		aluno3.setIdade(21);
+		aluno3.setCpf("111.022.333-8");
 		Aluno aluno4 = new Aluno();
 		aluno4.setIdade(23);
+		aluno4.setCpf("121.002.703-4");
 		
 		List <Aluno> turmaIP = sistemaAcademico.getAlunos();
 		sistemaAcademico.addAluno(aluno1);
@@ -124,8 +128,11 @@ public class SistemaTeste {
 	public void matricularAlunosEmTurmaETrancar(){
 		Aluno aluno1 = new Aluno();
 		aluno1.setIdade(20);
+		aluno1.setCpf("234.555.987-0");
 		Aluno aluno2 = new Aluno();
+		aluno2.setCpf("234.555.996-0");
 		aluno2.setIdade(20);
+		aluno1.setCpf("124.505.987-0");
 		
 		Disciplina disciplina1 = new Disciplina();
 		disciplina1.setNome("CALCULO 1");
@@ -172,15 +179,21 @@ public class SistemaTeste {
 		aluno2.setNome("Pedro Nascimento");
 		aluno2.setCpf("222.222.333-2");
 		aluno2.setIdade(16);
+		List<Aluno> alunos = sistemaAcademico.getAlunos();
+		sistemaAcademico.addAluno(aluno1);
+		sistemaAcademico.addAluno(aluno2);
 		assertEquals("Idade não Permitida, por gentileza informe uma idade acima de 18 anos", sistemaAcademico.validarIdade(aluno2));
+		assertEquals(1,alunos.size());
 	}
 	
 	@Test(expected = com.excecoes.CpfDuplicadoException.class)
 	public void cpfDoProfessorDuplicado(){
 		Professor professor1 = new Professor();
 		professor1.setCpf("258.259.104-36");
+		professor1.setIdade(30);
 		Professor professor2 = new Professor();
 		professor2.setCpf("258.259.104-36");
+		professor2.setIdade(46);
 		
 		List<Professor> professores = sistemaAcademico.getProfessores();
 		sistemaAcademico.addProfessor(professor1);
@@ -188,8 +201,26 @@ public class SistemaTeste {
 		assertEquals(professor1, sistemaAcademico.getProfessores()); 
 		assertEquals("Cpf ja cadastrado", sistemaAcademico.getProfessores());
 	}
-	
+	@Test(expected = com.excecoes.CpfDuplicadoException.class)
+	public void cpfDoAlunoDuplicado(){
+		Aluno a1 = new Aluno();
+		a1.setIdade(23);
+		a1.setCpf("324.444.111-0");
 		
+		Aluno a2 = new Aluno();
+		a2.setIdade(20);
+		a2.setCpf("324.444.111-0");
+		
+		List<Aluno> alunos = sistemaAcademico.getAlunos();
+		sistemaAcademico.addAluno(a1);
+		sistemaAcademico.addAluno(a2);
+		assertEquals(a1, sistemaAcademico.getAlunos()); 
+		assertEquals("Cpf ja cadastrado", sistemaAcademico.getAlunos());
+		
+		
+		}
 	}
+		
+	
 	
 	

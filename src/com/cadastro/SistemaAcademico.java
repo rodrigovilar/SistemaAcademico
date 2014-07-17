@@ -34,9 +34,16 @@ public class SistemaAcademico {
 	public List<Aluno> getAlunos(){
 		return alunos;
 	}
-	public void addAluno(Aluno aluno){
-		validarIdade(aluno);
-		alunos.add(aluno);
+	public void addAluno(Aluno novoAluno){
+		validarIdade(novoAluno);
+		
+		for(Aluno alunoAntigo : alunos){
+			if(alunoAntigo != null && 
+					alunoAntigo.getCpf()== novoAluno.getCpf()){
+				throw new 	CpfDuplicadoException("Cpf ja cadastrado");
+			}
+		}
+		alunos.add(novoAluno);
 	}
 	
 	public List<Professor> getProfessores() {
@@ -44,7 +51,8 @@ public class SistemaAcademico {
 	}
 
 	public void addProfessor(Professor novoProfessor){
-	
+		validarIdade(novoProfessor);
+	   
 		for(Professor professorAntigo : professores){
 			if(professorAntigo != null && 
 					professorAntigo.getCpf()== novoProfessor.getCpf()){
