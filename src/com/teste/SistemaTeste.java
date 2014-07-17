@@ -164,8 +164,8 @@ public class SistemaTeste {
 		aluno2.setIdade(21);
 		Disciplina disciplina2 = new Disciplina();
 		disciplina2.setNome("Introdução à Computador");
-		assertEquals("O Aluno está Reprovado",sistemaAcademico.SubmeterNotas(aluno1, disciplina1, 5));
-		assertEquals("O Aluno está Aprovado", sistemaAcademico.SubmeterNotas(aluno2, disciplina2, 8.5));
+		assertEquals("O Aluno está Reprovado",sistemaAcademico.submeterNotas(aluno1, disciplina1, 5));
+		assertEquals("O Aluno está Aprovado", sistemaAcademico.submeterNotas(aluno2, disciplina2, 8.5));
 		}
 	
 	
@@ -228,6 +228,43 @@ public class SistemaTeste {
 		
 		assertEquals("Idade não Permitida, por gentileza informe uma idade acima de 18 anos", sistemaAcademico.validarIdade(p1));
 	}
+	
+	/**@Test
+	public void ExibirHistorico(){
+		Aluno a = new Aluno();
+		a.setNome("Liviany Reis");
+		a.setCpf("321.666.333-4");
+		a.setIdade(21);
+		a.setMatricula("81221233");
+		
+		Disciplina d1 = new Disciplina();
+		d1.setNome("IP");
+		d1.setNota(7.3);
+		Disciplina d2 = new Disciplina();
+		d2.setNome("IC");
+		d2.setNota(9.0);
+		Disciplina d3 = new Disciplina();
+		d3.setNome("Filosofia");
+		d3.setNota(9.6);
+		Disciplina d4 = new Disciplina();
+		d4.setNome("Calculo 1");
+		d4.setNota(10);
+		Disciplina d5 = new Disciplina();
+		d5.setNome("Matematica elementar");
+		d5.setNota(8.0);
+		
+		
+		sistemaAcademico.submeterNotas(a, d1, 10);
+		sistemaAcademico.submeterNotas(a, d2, 4);
+		sistemaAcademico.submeterNotas(a, d3, 8);
+		sistemaAcademico.submeterNotas(a, d4, 9);
+		sistemaAcademico.submeterNotas(a, d5, 10);
+		
+		List<Disciplina> disciplinas = sistemaAcademico.getDisciplinas();
+		
+		sistemaAcademico.exibirHistorico(a,disciplinas);
+		
+	}*/
 	
 }
 	

@@ -13,8 +13,16 @@ public class SistemaAcademico {
 	private List<Aluno> alunos = new ArrayList<Aluno>();
 	private List<Departamento> departamentos = new ArrayList<Departamento>();
 	private List<Curso> cursos = new ArrayList<Curso>();
+	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	private int IDADE_MINIMO = 18;
-
+	
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+	
+	public void addDisciplina(Disciplina disciplina) {
+		disciplinas.add(disciplina);
+	}
 	
 	public List<Curso> getCursos(){
 		return cursos;
@@ -62,6 +70,8 @@ public class SistemaAcademico {
 		professores.add(novoProfessor);
 	
 	}
+	
+	
 
 	public String getNome() {
 		return nome;
@@ -87,7 +97,7 @@ public class SistemaAcademico {
 		this.cnpj = cnpj;
 	}
 	
-	public String SubmeterNotas(Aluno aluno, Disciplina disciplina, double nota) {
+	public String submeterNotas(Aluno aluno, Disciplina disciplina, double nota) {
 	
 		if(nota >= 7 && nota <= 10){
 			
