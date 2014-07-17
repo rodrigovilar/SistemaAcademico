@@ -3,6 +3,7 @@ package com.cadastro;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.excecoes.CpfDuplicadoException;
 import com.excecoes.IdadeInvalidaException;
 
 public class SistemaAcademico {
@@ -34,6 +35,7 @@ public class SistemaAcademico {
 		return alunos;
 	}
 	public void addAluno(Aluno aluno){
+		validarIdade(aluno);
 		alunos.add(aluno);
 	}
 	
@@ -41,8 +43,16 @@ public class SistemaAcademico {
 		return professores;
 	}
 
-	public void addProfessor(Professor professor) {
-		professores.add(professor);
+	public void addProfessor(Professor novoProfessor){
+	
+		for(Professor professorAntigo : professores){
+			if(professorAntigo != null && 
+					professorAntigo.getCpf()== novoProfessor.getCpf()){
+				throw new 	CpfDuplicadoException("Cpf ja cadastrado");
+			}
+		}
+		professores.add(novoProfessor);
+	
 	}
 
 	public String getNome() {
@@ -80,13 +90,17 @@ public class SistemaAcademico {
 		   }
 		return "Valor Inválido";
      }
-	public String cadastrarAluno(Aluno aluno) {
+	public String validarIdade(Pessoa pessoa) {
 		
-		if(aluno.getIdade() < IDADE_MINIMO){
+		if(pessoa.getIdade() < IDADE_MINIMO){
 			throw new IdadeInvalidaException("Idade não Permitida, por gentileza informe uma idade acima de 18 anos");
 		}else{
-            return "Parabéns Cadastrado com Sucesso";
+            return"";
 	}
+	
+	
+		
+		
 	
    }
 }

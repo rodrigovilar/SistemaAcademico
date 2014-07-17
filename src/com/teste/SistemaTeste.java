@@ -54,6 +54,7 @@ public class SistemaTeste {
 	public void cadastrarAluno(){
 		Aluno aluno = new Aluno();
 		aluno.setMatricula("81124930");
+		aluno.setIdade(19);
 		List <Aluno> alunos = sistemaAcademico.getAlunos();
 		sistemaAcademico.addAluno(aluno);
 		assertEquals(1, alunos.size());
@@ -102,24 +103,29 @@ public class SistemaTeste {
 		Disciplina disciplina1 = new Disciplina();
 		disciplina1.setNome("IP");
 		Aluno aluno1 = new Aluno();
+		aluno1.setIdade(20);
 		Aluno aluno2 = new Aluno();
+		aluno2.setIdade(30);
 		Aluno aluno3 = new Aluno();
+		aluno3.setIdade(21);
 		Aluno aluno4 = new Aluno();
+		aluno4.setIdade(23);
 		
-		List <Aluno> turmaIP = disciplina1.getAlunos();
-		disciplina1.addAluno(aluno1);
-		disciplina1.addAluno(aluno2);
-		disciplina1.addAluno(aluno3);
-		disciplina1.addAluno(aluno4);
+		List <Aluno> turmaIP = sistemaAcademico.getAlunos();
+		sistemaAcademico.addAluno(aluno1);
+		sistemaAcademico.addAluno(aluno2);
+		sistemaAcademico.addAluno(aluno3);
+		sistemaAcademico.addAluno(aluno4);
 		assertEquals(2,turmaIP.indexOf(aluno3));
 		assertEquals(4,turmaIP.size());	
 		
 	}
 	@Test
-	public void matricularAlunosEmDuasTurmasETrancarUma(){
+	public void matricularAlunosEmTurmaETrancar(){
 		Aluno aluno1 = new Aluno();
+		aluno1.setIdade(20);
 		Aluno aluno2 = new Aluno();
-		Aluno aluno3 = new Aluno();
+		aluno2.setIdade(20);
 		
 		Disciplina disciplina1 = new Disciplina();
 		disciplina1.setNome("CALCULO 1");
@@ -128,25 +134,15 @@ public class SistemaTeste {
 		
 		
 		
-		List <Aluno> turmaCALCULO1 = disciplina1.getAlunos();
-		disciplina1.addAluno(aluno1);
-		disciplina1.addAluno(aluno2);
+		List <Aluno> turmaCALCULO1 = sistemaAcademico.getAlunos();
+		sistemaAcademico.addAluno(aluno1);
+		sistemaAcademico.addAluno(aluno2);
 		assertEquals(2,turmaCALCULO1.size());
 		assertTrue(turmaCALCULO1.contains(aluno2));
 		
-		Disciplina disciplina2 = new Disciplina();
-		disciplina2.setNome("LP");
-		disciplina2.setCargaHoraria(60);
-		disciplina2.setCreditos(6);
-		List <Aluno> turmaLP = disciplina2.getAlunos();
-		disciplina2.addAluno(aluno1);
-		disciplina2.addAluno(aluno2);
-		disciplina2.addAluno(aluno3);
-		assertEquals(3,turmaLP.size());
-		assertTrue(turmaLP.contains(aluno2));
 		
-		turmaLP.remove(aluno2);
-		assertFalse(turmaLP.contains(aluno2));
+		turmaCALCULO1.remove(aluno2);
+		assertFalse(turmaCALCULO1.contains(aluno2));
 
 	}
 	@Test
@@ -176,11 +172,22 @@ public class SistemaTeste {
 		aluno2.setNome("Pedro Nascimento");
 		aluno2.setCpf("222.222.333-2");
 		aluno2.setIdade(16);
-		assertEquals("Parabéns Cadastrado com Sucesso", sistemaAcademico.cadastrarAluno(aluno1));
-		assertEquals("Idade não Permitida, por gentileza informe uma idade acima de 18 anos", sistemaAcademico.cadastrarAluno(aluno2));
+		assertEquals("Idade não Permitida, por gentileza informe uma idade acima de 18 anos", sistemaAcademico.validarIdade(aluno2));
 	}
 	
+	@Test(expected = com.excecoes.CpfDuplicadoException.class)
+	public void cpfDoProfessorDuplicado(){
+		Professor professor1 = new Professor();
+		professor1.setCpf("258.259.104-36");
+		Professor professor2 = new Professor();
+		professor2.setCpf("258.259.104-36");
 		
+		List<Professor> professores = sistemaAcademico.getProfessores();
+		sistemaAcademico.addProfessor(professor1);
+		sistemaAcademico.addProfessor(professor2);
+		assertEquals(professor1, sistemaAcademico.getProfessores()); 
+		assertEquals("Cpf ja cadastrado", sistemaAcademico.getProfessores());
+	}
 	
 		
 	}
