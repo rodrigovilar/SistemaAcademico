@@ -176,9 +176,11 @@ public class SistemaTeste {
 		aluno2.setNome("Pedro Nascimento");
 		aluno2.setCpf("222.222.333-2");
 		aluno2.setIdade(16);
-		assertEquals("Parabéns Cadastrado com Sucesso", sistemaAcademico.ValidaIdade(aluno1));
-		assertEquals("Idade não Permitida, por gentileza informe uma idade acima de 18 anos", sistemaAcademico.ValidaIdade(aluno2));
+		assertEquals("Parabéns Cadastrado com Sucesso", sistemaAcademico.cadastrarAluno(aluno1));
+		assertEquals("Idade não Permitida, por gentileza informe uma idade acima de 18 anos", sistemaAcademico.cadastrarAluno(aluno2));
 	}
+	
+		
 	
 		
 	}

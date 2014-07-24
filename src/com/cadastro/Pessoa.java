@@ -25,9 +25,10 @@ public class Pessoa {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public int getIdade() {
+	public int getIdade(){
 		return idade;
 	}
+	
 	public void setIdade(int idade) {
 		this.idade = idade;
 	}

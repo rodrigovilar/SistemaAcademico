@@ -36,6 +36,7 @@ public class SistemaAcademico {
 	public void addAluno(Aluno aluno){
 		alunos.add(aluno);
 	}
+	
 	public List<Professor> getProfessores() {
 		return professores;
 	}
@@ -79,15 +80,15 @@ public class SistemaAcademico {
 		   }
 		return "Valor Inválido";
      }
-	public String ValidaIdade(Aluno aluno) {
+	public String cadastrarAluno(Aluno aluno) {
 		
 		if(aluno.getIdade() < IDADE_MINIMO){
 			throw new IdadeInvalidaException("Idade não Permitida, por gentileza informe uma idade acima de 18 anos");
 		}else{
             return "Parabéns Cadastrado com Sucesso";
-
-        }
-    }
+	}
+	
+   }
 }
      
 	
