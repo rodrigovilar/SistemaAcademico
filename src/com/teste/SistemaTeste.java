@@ -103,7 +103,7 @@ public class SistemaTeste {
 		Aluno aluno3 = new Aluno();
 		Aluno aluno4 = new Aluno();
 		disciplina.setNome("IP");
-		List <Aluno> turmaIP = new ArrayList<>();
+		List <Aluno> turmaIP = sistemaAcademico.getAlunos();
 		turmaIP.add(aluno1);
 		turmaIP.add(aluno2);
 		turmaIP.add(aluno3);
@@ -128,7 +128,7 @@ public class SistemaTeste {
 		
 		Disciplina disciplina2 = new Disciplina();
 		disciplina2.setNome("LP");
-		List <Aluno> turmaLP = new ArrayList<>();
+		List <Aluno> turmaLP = sistemaAcademico.getAlunos();
 		turmaLP.add(aluno1);
 		turmaLP.add(aluno2);
 		turmaLP.add(aluno3);
