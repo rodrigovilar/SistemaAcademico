@@ -12,6 +12,7 @@ import org.junit.Test;
 import com.cadastro.Aluno;
 import com.cadastro.Curso;
 import com.cadastro.Departamento;
+import com.cadastro.Disciplina;
 import com.cadastro.Professor;
 import com.cadastro.SistemaAcademico;
 
@@ -104,10 +105,10 @@ public class SistemaTeste {
 		Aluno aluno4 = new Aluno();
 		disciplina.setNome("IP");
 		List <Aluno> turmaIP = sistemaAcademico.getAlunos();
-		sistemaAcademico.add(aluno1);
-		sistemaAcademico.add(aluno2);
-		sistemaAcademico.add(aluno3);
-		sistemaAcademico.add(aluno4);
+		sistemaAcademico.addAluno(aluno1);
+		sistemaAcademico.addAluno(aluno2);
+		sistemaAcademico.addAluno(aluno3);
+		sistemaAcademico.addAluno(aluno4);
 		assertEquals(2,turmaIP.indexOf(aluno3));
 		assertEquals(4,turmaIP.size());	
 		
@@ -120,18 +121,25 @@ public class SistemaTeste {
 		
 		Disciplina disciplina1 = new Disciplina();
 		disciplina1.setNome("CALCULO 1");
+		disciplina1.setCargaHoraria(90);
+		disciplina1.setCreditos(9);
 		
-		List <Aluno> turmaCALCULO1 = sistemaAcademico.getAlunos();
-		sistemaAcademico.add(aluno1);
-		sistemaAcademico.add(aluno2);
-		sistemaAcademico.add(aluno3);
+		
+		
+		List <Aluno> turmaCALCULO1 = disciplina1.getAlunos();
+		disciplina1.addAluno(aluno1);
+		disciplina1.addAluno(aluno2);
+		assertEquals(2,turmaCALCULO1.size());
+		assertTrue(turmaCALCULO1.contains(aluno2));
 		
 		Disciplina disciplina2 = new Disciplina();
 		disciplina2.setNome("LP");
-		List <Aluno> turmaLP = sistemaAcademico.getAlunos();
-		sistemaAcademico.add(aluno1);
-		sistemaAcademico.add(aluno2);
-		sistemaAcademico.add(aluno3);
+		disciplina2.setCargaHoraria(60);
+		disciplina2.setCreditos(6);
+		List <Aluno> turmaLP = disciplina2.getAlunos();
+		disciplina2.addAluno(aluno1);
+		disciplina2.addAluno(aluno2);
+		disciplina2.addAluno(aluno3);
 		assertEquals(3,turmaLP.size());
 		assertTrue(turmaLP.contains(aluno2));
 		

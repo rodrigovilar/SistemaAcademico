@@ -1,4 +1,4 @@
-package Classes;
+package com.cadastro;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,14 @@ public class Disciplina {
 	private String nome;
 	private int cargaHoraria;
 	private int creditos;
-	List <Aluno> turma = new ArrayList<>();
+	List <Aluno> turma = new ArrayList<Aluno>();
+	
+	public List<Aluno> getAlunos(){
+		return turma;
+	}
+	public void addAluno(Aluno aluno){
+		turma.add(aluno);
+	}
 	
 	public String getNome() {
 		return nome;
