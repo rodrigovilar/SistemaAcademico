@@ -95,6 +95,50 @@ public class SistemaTeste {
 		assertEquals(departamento3,departamentos.get(2));
 		
 	}
+	@Test
+	public void formarTurma(){
+		Disciplina disciplina = new Disciplina();
+		Aluno aluno1 = new Aluno();
+		Aluno aluno2 = new Aluno();
+		Aluno aluno3 = new Aluno();
+		Aluno aluno4 = new Aluno();
+		disciplina.setNome("IP");
+		List <Aluno> turmaIP = new ArrayList<>();
+		turmaIP.add(aluno1);
+		turmaIP.add(aluno2);
+		turmaIP.add(aluno3);
+		turmaIP.add(aluno4);
+		assertEquals(2,turmaIP.indexOf(aluno3));
+		assertEquals(4,turmaIP.size());	
+		
+	}
+	@Test
+	public void matricularAlunosEmDuasTurmasETrancarUma(){
+		Aluno aluno1 = new Aluno();
+		Aluno aluno2 = new Aluno();
+		Aluno aluno3 = new Aluno();
+		
+		Disciplina disciplina1 = new Disciplina();
+		disciplina1.setNome("CALCULO 1");
+		
+		List <Aluno> turmaCALCULO1 = new ArrayList<>();
+		turmaCALCULO1.add(aluno1);
+		turmaCALCULO1.add(aluno2);
+		turmaCALCULO1.add(aluno3);
+		
+		Disciplina disciplina2 = new Disciplina();
+		disciplina2.setNome("LP");
+		List <Aluno> turmaLP = new ArrayList<>();
+		turmaLP.add(aluno1);
+		turmaLP.add(aluno2);
+		turmaLP.add(aluno3);
+		assertEquals(3,turmaLP.size());
+		assertTrue(turmaLP.contains(aluno2));
+		
+		turmaLP.remove(aluno2);
+		assertFalse(turmaLP.contains(aluno2));
+
+	}
 	
 	
 
