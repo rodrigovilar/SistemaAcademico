@@ -154,10 +154,10 @@ public class SistemaTeste {
 		aluno1.setIdade(23);
 		Disciplina disciplina1 = new Disciplina();
 		disciplina1.setNome("Introdução à Computador");
-		assertEquals("Reprovado",sistemaAcademico.SubmeterNotas(aluno1, disciplina1, 5));
+		assertEquals("O Aluno está Reprovado",sistemaAcademico.SubmeterNotas(aluno1, disciplina1, 5));
 		}
 	
-		
+	
 		
 		
 	}

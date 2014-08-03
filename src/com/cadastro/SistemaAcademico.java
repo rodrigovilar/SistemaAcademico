@@ -67,15 +67,15 @@ public class SistemaAcademico {
 	
 	public String SubmeterNotas(Aluno aluno, Disciplina disciplina, double nota) {
 	
-		if(nota >= 7){
-			return "Aprovado";
+		if(nota >= 7 && nota <= 10){
 			
-		}else{
-			return "Reprovado";
-		}
-		
-	}
-	
-	
-
+			return "O Aluno está Aprovado";
+			
+		}else if (nota >=0 && nota <7 ){
+			return "O Aluno está Reprovado";
+		   }
+		return "Valor Inválido";
+     }
 }
+     
+	
