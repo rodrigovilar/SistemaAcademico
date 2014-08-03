@@ -3,6 +3,8 @@ package com.cadastro;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.excecoes.IdadeInvalidaException;
+
 public class SistemaAcademico {
 
 	private String nome, endereco, cnpj;

@@ -13,9 +13,9 @@ import com.cadastro.Aluno;
 import com.cadastro.Curso;
 import com.cadastro.Departamento;
 import com.cadastro.Disciplina;
-import com.cadastro.IdadeInvalidaException;
 import com.cadastro.Professor;
 import com.cadastro.SistemaAcademico;
+import com.excecoes.IdadeInvalidaException;
 
 public class SistemaTeste {
 	
@@ -166,7 +166,7 @@ public class SistemaTeste {
 		}
 	
 	
-	@Test(expected = IdadeInvalidaException.class)
+	@Test(expected = com.excecoes.IdadeInvalidaException.class)
 	public void TestValidarTestIdadeAluno(){;
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Pedro Nascimento");
