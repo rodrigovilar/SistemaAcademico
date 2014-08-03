@@ -13,6 +13,7 @@ import com.cadastro.Aluno;
 import com.cadastro.Curso;
 import com.cadastro.Departamento;
 import com.cadastro.Disciplina;
+import com.cadastro.IdadeInvalidaException;
 import com.cadastro.Professor;
 import com.cadastro.SistemaAcademico;
 
@@ -97,18 +98,19 @@ public class SistemaTeste {
 		
 	}
 	@Test
-	public void formarTurma(){
-		Disciplina disciplina = new Disciplina();
+	public void formarTurmaPorDisciplina(){
+		Disciplina disciplina1 = new Disciplina();
+		disciplina1.setNome("IP");
 		Aluno aluno1 = new Aluno();
 		Aluno aluno2 = new Aluno();
 		Aluno aluno3 = new Aluno();
 		Aluno aluno4 = new Aluno();
-		disciplina.setNome("IP");
-		List <Aluno> turmaIP = sistemaAcademico.getAlunos();
-		sistemaAcademico.addAluno(aluno1);
-		sistemaAcademico.addAluno(aluno2);
-		sistemaAcademico.addAluno(aluno3);
-		sistemaAcademico.addAluno(aluno4);
+		
+		List <Aluno> turmaIP = disciplina1.getAlunos();
+		disciplina1.addAluno(aluno1);
+		disciplina1.addAluno(aluno2);
+		disciplina1.addAluno(aluno3);
+		disciplina1.addAluno(aluno4);
 		assertEquals(2,turmaIP.indexOf(aluno3));
 		assertEquals(4,turmaIP.size());	
 		
@@ -153,12 +155,31 @@ public class SistemaTeste {
 		aluno1.setNome("Liviany Reis");
 		aluno1.setIdade(23);
 		Disciplina disciplina1 = new Disciplina();
-		disciplina1.setNome("Introdução à Computador");
+		disciplina1.setNome("Linguagem de Programação");
+		Aluno aluno2 = new Aluno();
+		aluno2.setNome("Wendell Soares");
+		aluno2.setIdade(21);
+		Disciplina disciplina2 = new Disciplina();
+		disciplina2.setNome("Introdução à Computador");
 		assertEquals("O Aluno está Reprovado",sistemaAcademico.SubmeterNotas(aluno1, disciplina1, 5));
+		assertEquals("O Aluno está Aprovado", sistemaAcademico.SubmeterNotas(aluno2, disciplina2, 8.5));
 		}
 	
 	
-		
+	@Test
+	public void TestValidarTestIdadeAluno(){;
+		Aluno aluno1 = new Aluno();
+		aluno1.setNome("Pedro Nascimento");
+		aluno1.setCpf("222.222.333-2");
+		aluno1.setIdade(18);
+		Aluno aluno2 = new Aluno();
+		aluno2.setNome("Pedro Nascimento");
+		aluno2.setCpf("222.222.333-2");
+		aluno2.setIdade(16);
+		assertEquals("Parabéns Cadastrado com Sucesso", sistemaAcademico.ValidaIdade(aluno1));
+		assertEquals("Idade não Permitida, por gentileza informe uma idade acima de 18 anos", sistemaAcademico.ValidaIdade(aluno2));
+	}
+	
 		
 	}
 	

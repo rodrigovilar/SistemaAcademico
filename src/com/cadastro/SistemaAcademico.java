@@ -10,6 +10,7 @@ public class SistemaAcademico {
 	private List<Aluno> alunos = new ArrayList<Aluno>();
 	private List<Departamento> departamentos = new ArrayList<Departamento>();
 	private List<Curso> cursos = new ArrayList<Curso>();
+	private int IDADE_MINIMO = 18;
 
 	
 	public List<Curso> getCursos(){
@@ -76,6 +77,15 @@ public class SistemaAcademico {
 		   }
 		return "Valor Inválido";
      }
+	public String ValidaIdade(Aluno aluno) {
+		
+		if(aluno.getIdade() < IDADE_MINIMO){
+			throw new IdadeInvalidaException("Idade não Permitida, por gentileza informe uma idade acima de 18 anos");
+		}else{
+            return "Parabéns Cadastrado com Sucesso";
+
+        }
+    }
 }
      
 	
