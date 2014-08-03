@@ -166,7 +166,7 @@ public class SistemaTeste {
 		}
 	
 	
-	@Test
+	@Test(expected = IdadeInvalidaException.class)
 	public void TestValidarTestIdadeAluno(){;
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Pedro Nascimento");
