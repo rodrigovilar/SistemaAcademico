@@ -2,7 +2,9 @@ package com.cadastro;
 
 public class Pessoa {
 	
-	private String nome, cpf, endereco;
+	private String nome;
+	private String cpf;
+	private String endereco;
 	private int idade;
 	
 	public String getNome() {

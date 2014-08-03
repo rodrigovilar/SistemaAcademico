@@ -147,7 +147,19 @@ public class SistemaTeste {
 		assertFalse(turmaLP.contains(aluno2));
 
 	}
+	@Test
+	public void TesteSubmeterNotaPorDisciplina(){
+		Aluno aluno1 = new Aluno();
+		aluno1.setNome("Liviany Reis");
+		aluno1.setIdade(23);
+		Disciplina disciplina1 = new Disciplina();
+		disciplina1.setNome("Introdução à Computador");
+		assertEquals("Reprovado",sistemaAcademico.SubmeterNotas(aluno1, disciplina1, 5));
+		}
+	
+		
+		
+		
+	}
 	
 	
-
-}

@@ -10,6 +10,7 @@ public class SistemaAcademico {
 	private List<Aluno> alunos = new ArrayList<Aluno>();
 	private List<Departamento> departamentos = new ArrayList<Departamento>();
 	private List<Curso> cursos = new ArrayList<Curso>();
+
 	
 	public List<Curso> getCursos(){
 		return cursos;
@@ -62,6 +63,17 @@ public class SistemaAcademico {
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
+	}
+	
+	public String SubmeterNotas(Aluno aluno, Disciplina disciplina, double nota) {
+	
+		if(nota >= 7){
+			return "Aprovado";
+			
+		}else{
+			return "Reprovado";
+		}
+		
 	}
 	
 	
