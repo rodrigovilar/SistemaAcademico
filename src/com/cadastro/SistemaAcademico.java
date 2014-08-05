@@ -34,10 +34,10 @@ public class SistemaAcademico {
 			
 		}
 	}
-	public String toString(Aluno aluno, Disciplina disciplina, double nota){
+	public String toString(Aluno aluno,Disciplina disciplina, double nota){
 		
 		
-		return ("Aluno: " +aluno.getNome()+ ", Disciplina:"  +disciplina.getNome()+ ", Nota: " +nota);
+		return ("Disciplina:"  +disciplina.getNome()+ ", Nota: " +nota);
 	}
 	
 	public void addAluno(Aluno novoAluno){

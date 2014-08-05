@@ -162,7 +162,7 @@ public class SistemaTeste {
 		disciplina1.setNome("Introdução ao Computador");
 		disciplina1.setCargaHoraria(60);
 		disciplina1.setCreditos(6);
-		assertEquals("Aluno: Liviany Reis, Disciplina:Introdução ao Computador, Nota: 8.0", sistemaAcademico.toString(aluno1,disciplina1,8.0));
+		assertEquals("Disciplina:Introdução ao Computador, Nota: 8.0", sistemaAcademico.toString(aluno1,disciplina1,8.0));
 		
 	}
 	
@@ -248,6 +248,39 @@ public class SistemaTeste {
 		assertEquals("Reprovado",sistemaAcademico.SituacaoAlunoPorDisciplina(aluno1, disciplina1,4.5));
 		
 	}
+
+@Test
+public void submeterMediasDoPeriodo(){
+	Aluno a = new Aluno();
+	a.setNome("Wendell");
+	
+	Disciplina d1 = new Disciplina();
+	d1.setNome("IP");
+	Disciplina d2 = new Disciplina();
+	d2.setNome("Calculo1");
+	Disciplina d3 = new Disciplina();
+	d3.setNome("Matematica Elementar");
+	Disciplina d4 = new Disciplina();
+	d4.setNome("Filosofia");
+	Disciplina d5 = new Disciplina();
+	d5.setNome("IC");
+	
+	List <String> historico = new ArrayList<>();
+	historico.add(a.getNome());
+	historico.add(sistemaAcademico.toString(a,d1,8.5));
+	historico.add(sistemaAcademico.toString(a,d2,8.0));
+	historico.add(sistemaAcademico.toString(a,d3,8.5));
+	historico.add(sistemaAcademico.toString(a,d4,9.5));
+	historico.add(sistemaAcademico.toString(a,d5,9.0));
+	
+	assertEquals(2,historico.indexOf(sistemaAcademico.toString(a,d2,8.0)));
+	assertEquals("Disciplina:Filosofia, Nota: 9.5", historico.get(4));
+	assertTrue(historico.contains("Wendell"));
+	
+	
+	
+	
+}
 	
 	
 }
