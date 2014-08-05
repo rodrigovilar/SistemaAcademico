@@ -44,7 +44,7 @@ public class SistemaAcademico {
 	
 	public void addAluno(Aluno novoAluno){
 		validarIdade(novoAluno);
-		
+				
 		for(Aluno alunoAntigo : alunos){
 			if(alunoAntigo != null && 
 					alunoAntigo.getCpf()== novoAluno.getCpf()){
@@ -55,6 +55,7 @@ public class SistemaAcademico {
 	}
 	public void addProfessor(Professor novoProfessor){
 		validarIdade(novoProfessor);
+		
 	   
 		for(Professor professorAntigo : professores){
 			if(professorAntigo != null && 
@@ -65,6 +66,7 @@ public class SistemaAcademico {
 		professores.add(novoProfessor);
 	
 	}
+	
 	public void addDepartamento(Departamento departamento){
 		departamentos.add(departamento);
 	}

@@ -13,6 +13,7 @@ import com.cadastro.Aluno;
 import com.cadastro.Curso;
 import com.cadastro.Departamento;
 import com.cadastro.Disciplina;
+import com.cadastro.Pessoa;
 import com.cadastro.Professor;
 import com.cadastro.SistemaAcademico;
 import com.excecoes.IdadeInvalidaException;
@@ -121,7 +122,18 @@ public class SistemaTeste {
 		sistemaAcademico.addAluno(aluno3);
 		sistemaAcademico.addAluno(aluno4);
 		assertEquals(2,turmaIP.indexOf(aluno3));
-		assertEquals(4,turmaIP.size());	
+		assertEquals(0,turmaIP.indexOf(aluno1));
+		assertEquals(1,turmaIP.indexOf(aluno2));
+		assertEquals(3,turmaIP.indexOf(aluno4));
+		assertEquals(4,turmaIP.size());
+		
+		turmaIP.remove(aluno1);
+		
+		assertTrue(turmaIP.contains(aluno2));
+		assertTrue(turmaIP.contains(aluno3));
+		assertTrue(turmaIP.contains(aluno4));
+		
+		assertFalse(turmaIP.contains(aluno1));
 		
 	}
 	@Test
@@ -197,6 +209,7 @@ public class SistemaTeste {
 		sistemaAcademico.addProfessor(professor2);
 		assertEquals(professor1, sistemaAcademico.getProfessores()); 
 		assertEquals("Cpf ja cadastrado", sistemaAcademico.getProfessores());
+		assertEquals(1,professores.size());
 	}
 	@Test(expected = com.excecoes.CpfDuplicadoException.class)
 	public void cpfDoAlunoDuplicado(){
@@ -213,10 +226,9 @@ public class SistemaTeste {
 		sistemaAcademico.addAluno(a2);
 		assertEquals(a1, sistemaAcademico.getAlunos()); 
 		assertEquals("Cpf ja cadastrado", sistemaAcademico.getAlunos());
+		assertEquals(1,alunos.size());
 		
-		
-		}
-		
+	}
 	@Test(expected = com.excecoes.IdadeInvalidaException.class)
 	public void validarIdadeProfessor(){
 		Professor p1 = new Professor();
@@ -225,7 +237,6 @@ public class SistemaTeste {
 		
 		assertEquals("Idade não Permitida, por gentileza informe uma idade acima de 18 anos", sistemaAcademico.validarIdade(p1));
 	}
-	
 	@Test
 	public void exibirSituaçãoDoAlunoEmUmDisciplina(){
 		Aluno aluno1 = new Aluno();
@@ -249,40 +260,37 @@ public class SistemaTeste {
 		
 	}
 
-@Test
-public void submeterMediasDoPeriodo(){
-	Aluno a = new Aluno();
-	a.setNome("Wendell");
+	@Test
+	public void submeterMediasDoPeriodo(){
+		Aluno a = new Aluno();
+		a.setNome("Wendell");
 	
-	Disciplina d1 = new Disciplina();
-	d1.setNome("IP");
-	Disciplina d2 = new Disciplina();
-	d2.setNome("Calculo1");
-	Disciplina d3 = new Disciplina();
-	d3.setNome("Matematica Elementar");
-	Disciplina d4 = new Disciplina();
-	d4.setNome("Filosofia");
-	Disciplina d5 = new Disciplina();
-	d5.setNome("IC");
+		Disciplina d1 = new Disciplina();
+		d1.setNome("IP");
+		Disciplina d2 = new Disciplina();
+		d2.setNome("Calculo1");
+		Disciplina d3 = new Disciplina();
+		d3.setNome("Matematica Elementar");
+		Disciplina d4 = new Disciplina();
+		d4.setNome("Filosofia");
+		Disciplina d5 = new Disciplina();
+		d5.setNome("IC");
+		List <String> historico = new ArrayList<>();
+		historico.add(a.getNome());
+		historico.add(sistemaAcademico.toString(a,d1,8.5));
+		historico.add(sistemaAcademico.toString(a,d2,8.0));
+		historico.add(sistemaAcademico.toString(a,d3,8.5));
+		historico.add(sistemaAcademico.toString(a,d4,9.5));
+		historico.add(sistemaAcademico.toString(a,d5,9.0));
+		assertEquals(2,historico.indexOf(sistemaAcademico.toString(a,d2,8.0)));
+		assertEquals("Disciplina: Filosofia, Nota: 9.5 Situação: Aprovado", historico.get(4));
+		assertEquals("Disciplina: Calculo1, Nota: 8.0 Situação: Aprovado",historico.get(2));
+		assertEquals("Disciplina: IP, Nota: 8.5 Situação: Aprovado",historico.get(1));
+		assertTrue(historico.contains("Wendell"));
+		assertEquals(6,historico.size());
 	
-	List <String> historico = new ArrayList<>();
-	historico.add(a.getNome());
-	historico.add(sistemaAcademico.toString(a,d1,8.5));
-	historico.add(sistemaAcademico.toString(a,d2,8.0));
-	historico.add(sistemaAcademico.toString(a,d3,8.5));
-	historico.add(sistemaAcademico.toString(a,d4,9.5));
-	historico.add(sistemaAcademico.toString(a,d5,9.0));
+	   }
 	
-	assertEquals(2,historico.indexOf(sistemaAcademico.toString(a,d2,8.0)));
-	assertEquals("Disciplina: Filosofia, Nota: 9.5 Situação: Aprovado", historico.get(4));
-	assertTrue(historico.contains("Wendell"));
-	
-	
-	
-	
-}
-	
-	
-}
+	}
 	
 	
