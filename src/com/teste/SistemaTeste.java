@@ -152,18 +152,19 @@ public class SistemaTeste {
 		assertFalse(turmaCALCULO1.contains(aluno2));
 
 	}
-	/**@Test
+	@Test
 	public void TesteSubmeterMediaPorDisciplina(){
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Liviany Reis");
+		aluno1.setCpf("1");
 		aluno1.setIdade(23);
 		Disciplina disciplina1 = new Disciplina();
-		disciplina1.setNome("Linguagem de Programação");
-		assertEquals(8.0, sistemaAcademico.submeterMedia(aluno1,disciplina1, 8.0));
+		disciplina1.setNome("Introdução ao Computador");
+		disciplina1.setCargaHoraria(60);
+		disciplina1.setCreditos(6);
+		assertEquals("Aluno: Liviany Reis, Disciplina:Introdução ao Computador, Nota: 8.0", sistemaAcademico.toString(aluno1,disciplina1,8.0));
 		
 	}
-	
-	*/
 	
 	@Test(expected = com.excecoes.IdadeInvalidaException.class)
 	public void ValidarIdadeAluno(){;
@@ -227,54 +228,27 @@ public class SistemaTeste {
 	
 	@Test
 	public void exibirSituaçãoDoAluno(){
-		SistemaAcademico mediaAluno1 = new SistemaAcademico();
-		SistemaAcademico mediaAluno2 = new SistemaAcademico();
-
-		mediaAluno1.setMedia(9.5);
-		mediaAluno2.setMedia(4.5);
+		Aluno aluno1 = new Aluno();
+		aluno1.setNome("Cristal");
+		aluno1.setCpf("1");
+		aluno1.setIdade(23);
+		Aluno aluno2 = new Aluno();
+		aluno2.setNome("Raimundo");
+		aluno2.setCpf("2");
+		aluno2.setIdade(18);
+		Disciplina disciplina1 = new Disciplina();
+		disciplina1.setNome("Linguagem de Programação");
+		disciplina1.setCargaHoraria(60);
+		disciplina1.setCreditos(6);
 		
-		assertTrue(mediaAluno1.alunoAprovado(mediaAluno1.getMedia()));
-		assertFalse(mediaAluno2.alunoAprovado(mediaAluno2.getMedia()));
-
+		sistemaAcademico.SituacaoAlunoPorDisciplina(aluno1, disciplina1, 9.5);
+		sistemaAcademico.SituacaoAlunoPorDisciplina(aluno2, disciplina1, 4.5);
+		
+		assertEquals("Aprovado",sistemaAcademico.SituacaoAlunoPorDisciplina(aluno1, disciplina1,9.5));
+		assertEquals("Reprovado",sistemaAcademico.SituacaoAlunoPorDisciplina(aluno1, disciplina1,4.5));
 		
 	}
 	
-	/**@Test
-	public void ExibirHistorico(){
-		Aluno a = new Aluno();
-		a.setNome("Liviany Reis");
-		a.setCpf("321.666.333-4");
-		a.setIdade(21);
-		a.setMatricula("81221233");
-		
-		Disciplina d1 = new Disciplina();
-		d1.setNome("IP");
-		d1.setNota(7.3);
-		Disciplina d2 = new Disciplina();
-		d2.setNome("IC");
-		d2.setNota(9.0);
-		Disciplina d3 = new Disciplina();
-		d3.setNome("Filosofia");
-		d3.setNota(9.6);
-		Disciplina d4 = new Disciplina();
-		d4.setNome("Calculo 1");
-		d4.setNota(10);
-		Disciplina d5 = new Disciplina();
-		d5.setNome("Matematica elementar");
-		d5.setNota(8.0);
-		
-		
-		sistemaAcademico.submeterNotas(a, d1, 10);
-		sistemaAcademico.submeterNotas(a, d2, 4);
-		sistemaAcademico.submeterNotas(a, d3, 8);
-		sistemaAcademico.submeterNotas(a, d4, 9);
-		sistemaAcademico.submeterNotas(a, d5, 10);
-		
-		List<Disciplina> disciplinas = sistemaAcademico.getDisciplinas();
-		
-		sistemaAcademico.exibirHistorico(a,disciplinas);
-		
-	}*/
 	
 }
 	

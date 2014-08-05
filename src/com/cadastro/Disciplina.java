@@ -7,7 +7,7 @@ public class Disciplina {
 	private String nome;
 	private int cargaHoraria;
 	private int creditos;
-	private  double nota;
+	
 	
 	List <Aluno> turma = new ArrayList<Aluno>();
 	
@@ -39,11 +39,5 @@ public class Disciplina {
 		this.nome = nome;
 		
 	}
-	public  double getNota() {
-		return nota;
-	}
-	public void setNota(double nota) {
-		this.nota = nota;
-	}
-
+	
 }

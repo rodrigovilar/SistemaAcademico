@@ -15,18 +15,9 @@ public class SistemaAcademico {
 	private List<Curso> cursos = new ArrayList<Curso>();
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	private int IDADE_MINIMO = 18;
-	private double media;
-	private String situacaoDisciplina= null;
 	
-	/**public String SituaçãoDisciplina(Disciplina disciplina){
-		
-		if(isSubmeterMedia()){
-			situaçãoDisciplina = ""
-			
-		}
-		
-	}
-   */
+	
+	
 	public String validarIdade(Pessoa pessoa) {
 		
 		if(pessoa.getIdade() < IDADE_MINIMO){
@@ -35,14 +26,20 @@ public class SistemaAcademico {
             return"";
 	}
 	}
-	public boolean submeterMedia(Aluno aluno,Disciplina disciplina, double nota){
+	public String SituacaoAlunoPorDisciplina(Aluno aluno, Disciplina disciplina, double nota){
+		if(nota >= 5){
+			return "Aprovado";
+		}else{
+			return "Reprovado";
+			
+		}
+	}
+	public String toString(Aluno aluno, Disciplina disciplina, double nota){
 		
 		
-		
-		return true;
+		return ("Aluno: " +aluno.getNome()+ ", Disciplina:"  +disciplina.getNome()+ ", Nota: " +nota);
 	}
 	
-
 	public void addAluno(Aluno novoAluno){
 		validarIdade(novoAluno);
 		
@@ -95,17 +92,10 @@ public class SistemaAcademico {
 		return alunos;
 	}
 	
-		public List<Professor> getProfessores() {
+	public List<Professor> getProfessores() {
 		return professores;
 	}
 
-	public double getMedia() {
-		return media;
-	}
-
-	public void setMedia(double media) {
-		this.media = media;
-	}
 	public String getNome(){
 		return nome;
 	}
@@ -128,14 +118,6 @@ public class SistemaAcademico {
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
-	}
-	public boolean alunoAprovado(double media){
-		double mediaFinal = media;
-		if(mediaFinal < 5){
-			return false;
-		}else{
-			return true;
-		}
 	}
 	
 
