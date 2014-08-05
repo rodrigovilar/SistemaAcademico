@@ -16,15 +16,14 @@ public class SistemaAcademico {
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	private int IDADE_MINIMO = 18;
 	
-	
-	
+		
 	public String validarIdade(Pessoa pessoa) {
 		
 		if(pessoa.getIdade() < IDADE_MINIMO){
 			throw new IdadeInvalidaException("Idade não Permitida, por gentileza informe uma idade acima de 18 anos");
 		}else{
             return"";
-	}
+	    }
 	}
 	public String SituacaoAlunoPorDisciplina(Aluno aluno, Disciplina disciplina, double nota){
 		if(nota >= 5){
@@ -36,8 +35,11 @@ public class SistemaAcademico {
 	}
 	public String toString(Aluno aluno,Disciplina disciplina, double nota){
 		
+		String situcaoAtual;
 		
-		return ("Disciplina:"  +disciplina.getNome()+ ", Nota: " +nota);
+		situcaoAtual = SituacaoAlunoPorDisciplina(aluno,disciplina,nota);
+		
+		return ("Disciplina: "  +disciplina.getNome()+ ", Nota: " +nota+ " Situação: " +situcaoAtual);
 	}
 	
 	public void addAluno(Aluno novoAluno){
@@ -120,7 +122,7 @@ public class SistemaAcademico {
 		this.cnpj = cnpj;
 	}
 	
-
+	
 }
      
 	

@@ -162,7 +162,7 @@ public class SistemaTeste {
 		disciplina1.setNome("Introdução ao Computador");
 		disciplina1.setCargaHoraria(60);
 		disciplina1.setCreditos(6);
-		assertEquals("Disciplina:Introdução ao Computador, Nota: 8.0", sistemaAcademico.toString(aluno1,disciplina1,8.0));
+		assertEquals("Disciplina: Introdução ao Computador, Nota: 8.0 Situação: Aprovado", sistemaAcademico.toString(aluno1,disciplina1,8.0));
 		
 	}
 	
@@ -227,7 +227,7 @@ public class SistemaTeste {
 	}
 	
 	@Test
-	public void exibirSituaçãoDoAluno(){
+	public void exibirSituaçãoDoAlunoEmUmDisciplina(){
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Cristal");
 		aluno1.setCpf("1");
@@ -274,7 +274,7 @@ public void submeterMediasDoPeriodo(){
 	historico.add(sistemaAcademico.toString(a,d5,9.0));
 	
 	assertEquals(2,historico.indexOf(sistemaAcademico.toString(a,d2,8.0)));
-	assertEquals("Disciplina:Filosofia, Nota: 9.5", historico.get(4));
+	assertEquals("Disciplina: Filosofia, Nota: 9.5 Situação: Aprovado", historico.get(4));
 	assertTrue(historico.contains("Wendell"));
 	
 	
