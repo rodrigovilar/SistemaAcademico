@@ -15,33 +15,34 @@ public class SistemaAcademico {
 	private List<Curso> cursos = new ArrayList<Curso>();
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	private int IDADE_MINIMO = 18;
+	private double media;
+	private String situacaoDisciplina= null;
 	
-	public List<Disciplina> getDisciplinas() {
-		return disciplinas;
-	}
-	
-	public void addDisciplina(Disciplina disciplina) {
-		disciplinas.add(disciplina);
-	}
-	
-	public List<Curso> getCursos(){
-		return cursos;
+	/**public String SituaçãoDisciplina(Disciplina disciplina){
+		
+		if(isSubmeterMedia()){
+			situaçãoDisciplina = ""
+			
+		}
 		
 	}
-	public void addCurso(Curso curso){
-		cursos.add(curso);
+   */
+	public String validarIdade(Pessoa pessoa) {
+		
+		if(pessoa.getIdade() < IDADE_MINIMO){
+			throw new IdadeInvalidaException("Idade não Permitida, por gentileza informe uma idade acima de 18 anos");
+		}else{
+            return"";
+	}
+	}
+	public boolean submeterMedia(Aluno aluno,Disciplina disciplina, double nota){
+		
+		
+		
+		return true;
 	}
 	
-	public List<Departamento> getDepartamentos(){
-		return departamentos;
-	}
-	public void addDepartamento(Departamento departamento){
-		departamentos.add(departamento);
-	}
-	
-	public List<Aluno> getAlunos(){
-		return alunos;
-	}
+
 	public void addAluno(Aluno novoAluno){
 		validarIdade(novoAluno);
 		
@@ -53,11 +54,6 @@ public class SistemaAcademico {
 		}
 		alunos.add(novoAluno);
 	}
-	
-	public List<Professor> getProfessores() {
-		return professores;
-	}
-
 	public void addProfessor(Professor novoProfessor){
 		validarIdade(novoProfessor);
 	   
@@ -70,10 +66,47 @@ public class SistemaAcademico {
 		professores.add(novoProfessor);
 	
 	}
+	public void addDepartamento(Departamento departamento){
+		departamentos.add(departamento);
+	}
 	
+	public void addDisciplina(Disciplina disciplina) {
+		disciplinas.add(disciplina);
+	}
 	
+	public void addCurso(Curso curso){
+		cursos.add(curso);
+	}
+	
+	public List<Disciplina> getDisciplinas() {
+		return disciplinas;
+	}
+	
+	public List<Curso> getCursos(){
+		return cursos;
+		
+	}
+		
+	public List<Departamento> getDepartamentos(){
+		return departamentos;
+	}
+	
+	public List<Aluno> getAlunos(){
+		return alunos;
+	}
+	
+		public List<Professor> getProfessores() {
+		return professores;
+	}
 
-	public String getNome() {
+	public double getMedia() {
+		return media;
+	}
+
+	public void setMedia(double media) {
+		this.media = media;
+	}
+	public String getNome(){
 		return nome;
 	}
 
@@ -97,30 +130,7 @@ public class SistemaAcademico {
 		this.cnpj = cnpj;
 	}
 	
-	public String submeterNotas(Aluno aluno, Disciplina disciplina, double nota) {
-	
-		if(nota >= 7 && nota <= 10){
-			
-			return "O Aluno está Aprovado";
-			
-		}else if (nota >=0 && nota <7 ){
-			return "O Aluno está Reprovado";
-		   }
-		return "Valor Inválido";
-     }
-	public String validarIdade(Pessoa pessoa) {
-		
-		if(pessoa.getIdade() < IDADE_MINIMO){
-			throw new IdadeInvalidaException("Idade não Permitida, por gentileza informe uma idade acima de 18 anos");
-		}else{
-            return"";
-	}
-	
-	
-		
-		
-	
-   }
+
 }
      
 	

@@ -152,22 +152,18 @@ public class SistemaTeste {
 		assertFalse(turmaCALCULO1.contains(aluno2));
 
 	}
-	@Test
-	public void TesteSubmeterNotaPorDisciplina(){
+	/**@Test
+	public void TesteSubmeterMediaPorDisciplina(){
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Liviany Reis");
 		aluno1.setIdade(23);
 		Disciplina disciplina1 = new Disciplina();
 		disciplina1.setNome("Linguagem de Programação");
-		Aluno aluno2 = new Aluno();
-		aluno2.setNome("Wendell Soares");
-		aluno2.setIdade(21);
-		Disciplina disciplina2 = new Disciplina();
-		disciplina2.setNome("Introdução à Computador");
-		assertEquals("O Aluno está Reprovado",sistemaAcademico.submeterNotas(aluno1, disciplina1, 5));
-		assertEquals("O Aluno está Aprovado", sistemaAcademico.submeterNotas(aluno2, disciplina2, 8.5));
-		}
+		assertEquals(8.0, sistemaAcademico.submeterMedia(aluno1,disciplina1, 8.0));
+		
+	}
 	
+	*/
 	
 	@Test(expected = com.excecoes.IdadeInvalidaException.class)
 	public void ValidarIdadeAluno(){;
