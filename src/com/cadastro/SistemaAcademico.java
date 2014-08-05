@@ -129,6 +129,14 @@ public class SistemaAcademico {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+	public boolean alunoAprovado(double media){
+		double mediaFinal = media;
+		if(mediaFinal < 5){
+			return false;
+		}else{
+			return true;
+		}
+	}
 	
 
 }

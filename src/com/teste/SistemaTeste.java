@@ -225,6 +225,20 @@ public class SistemaTeste {
 		assertEquals("Idade não Permitida, por gentileza informe uma idade acima de 18 anos", sistemaAcademico.validarIdade(p1));
 	}
 	
+	@Test
+	public void exibirSituaçãoDoAluno(){
+		SistemaAcademico mediaAluno1 = new SistemaAcademico();
+		SistemaAcademico mediaAluno2 = new SistemaAcademico();
+
+		mediaAluno1.setMedia(9.5);
+		mediaAluno2.setMedia(4.5);
+		
+		assertTrue(mediaAluno1.alunoAprovado(mediaAluno1.getMedia()));
+		assertFalse(mediaAluno2.alunoAprovado(mediaAluno2.getMedia()));
+
+		
+	}
+	
 	/**@Test
 	public void ExibirHistorico(){
 		Aluno a = new Aluno();
