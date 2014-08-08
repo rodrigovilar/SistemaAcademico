@@ -54,10 +54,13 @@ public class SistemaTeste {
 	@Test
 	public void cadastrarAluno(){
 		Aluno aluno = new Aluno();
-		aluno.setMatricula("81124930");
+		aluno.setNome("Keila");
 		aluno.setIdade(19);
+		aluno.setCpf("111.222.333-4");
+		sistemaAcademico.gerarMatricula(aluno);
 		List <Aluno> alunos = sistemaAcademico.getAlunos();
 		sistemaAcademico.addAluno(aluno);
+		assertEquals("Keil111",sistemaAcademico.gerarMatricula(aluno));
 		assertEquals(1, alunos.size());
 		assertEquals(aluno, alunos.get(0));
 				
@@ -104,15 +107,19 @@ public class SistemaTeste {
 		Disciplina disciplina1 = new Disciplina();
 		disciplina1.setNome("IP");
 		Aluno aluno1 = new Aluno();
+		aluno1.setNome("Carlos André");
 		aluno1.setIdade(20);
 		aluno1.setCpf("111.222.333-4");
 		Aluno aluno2 = new Aluno();
+		aluno2.setNome("Fernanda Karla");
 		aluno2.setIdade(30);
 		aluno2.setCpf("111.222.325-7");
 		Aluno aluno3 = new Aluno();
+		aluno3.setNome("João Felipe");
 		aluno3.setIdade(21);
 		aluno3.setCpf("111.022.333-8");
 		Aluno aluno4 = new Aluno();
+		aluno4.setNome("Maria Glaúdia");
 		aluno4.setIdade(23);
 		aluno4.setCpf("121.002.703-4");
 		
@@ -139,19 +146,19 @@ public class SistemaTeste {
 	@Test
 	public void matricularAlunosEmTurmaETrancar(){
 		Aluno aluno1 = new Aluno();
+		aluno1.setNome("Roberto Carlos");
 		aluno1.setIdade(20);
 		aluno1.setCpf("234.555.987-0");
 		Aluno aluno2 = new Aluno();
-		aluno2.setCpf("234.555.996-0");
+		aluno2.setNome("Raimundo José");
+		aluno2.setCpf("255.555.987-0");
 		aluno2.setIdade(20);
-		aluno1.setCpf("124.505.987-0");
+		
 		
 		Disciplina disciplina1 = new Disciplina();
 		disciplina1.setNome("CALCULO 1");
 		disciplina1.setCargaHoraria(90);
 		disciplina1.setCreditos(9);
-		
-		
 		
 		List <Aluno> turmaCALCULO1 = sistemaAcademico.getAlunos();
 		sistemaAcademico.addAluno(aluno1);
@@ -174,7 +181,7 @@ public class SistemaTeste {
 		disciplina1.setNome("Introdução ao Computador");
 		disciplina1.setCargaHoraria(60);
 		disciplina1.setCreditos(6);
-		assertEquals("Disciplina: Introdução ao Computador, Nota: 8.0 Situação: Aprovado", sistemaAcademico.toString(aluno1,disciplina1,8.0));
+		assertEquals("Disciplina: Introdução ao Computador, Nota: 8.0, Situação: Aprovado", sistemaAcademico.toString(aluno1,disciplina1,8.0));
 		
 	}
 	
@@ -214,17 +221,19 @@ public class SistemaTeste {
 	@Test(expected = com.excecoes.CpfDuplicadoException.class)
 	public void cpfDoAlunoDuplicado(){
 		Aluno a1 = new Aluno();
+		a1.setNome("Carlos André");
 		a1.setIdade(23);
 		a1.setCpf("324.444.111-0");
 		
 		Aluno a2 = new Aluno();
+		a2.setNome("Felipe Augusto");
 		a2.setIdade(20);
 		a2.setCpf("324.444.111-0");
 		
 		List<Aluno> alunos = sistemaAcademico.getAlunos();
 		sistemaAcademico.addAluno(a1);
 		sistemaAcademico.addAluno(a2);
-		assertEquals(a1, sistemaAcademico.getAlunos()); 
+		assertEquals(a1, sistemaAcademico.getAlunos());
 		assertEquals("Cpf ja cadastrado", sistemaAcademico.getAlunos());
 		assertEquals(1,alunos.size());
 		
@@ -283,13 +292,26 @@ public class SistemaTeste {
 		historico.add(sistemaAcademico.toString(a,d4,9.5));
 		historico.add(sistemaAcademico.toString(a,d5,9.0));
 		assertEquals(2,historico.indexOf(sistemaAcademico.toString(a,d2,8.0)));
-		assertEquals("Disciplina: Filosofia, Nota: 9.5 Situação: Aprovado", historico.get(4));
-		assertEquals("Disciplina: Calculo1, Nota: 8.0 Situação: Aprovado",historico.get(2));
-		assertEquals("Disciplina: IP, Nota: 8.5 Situação: Aprovado",historico.get(1));
+		assertEquals("Disciplina: Filosofia, Nota: 9.5, Situação: Aprovado", historico.get(4));
+		assertEquals("Disciplina: Calculo1, Nota: 8.0, Situação: Aprovado",historico.get(2));
+		assertEquals("Disciplina: IP, Nota: 8.5, Situação: Aprovado",historico.get(1));
 		assertTrue(historico.contains("Wendell"));
 		assertEquals(6,historico.size());
 	
 	   }
+	
+	@Test
+	public void GerarMatriculaAluno(){
+		Aluno aluno = new Aluno();
+		aluno.setNome("Leandro");
+		aluno.setCpf("111222.333-42");
+		aluno.setEndereco("Rua das Trincheiras");
+		aluno.setIdade(23);
+		sistemaAcademico.gerarMatricula(aluno);
+		assertEquals("Lean111",sistemaAcademico.gerarMatricula(aluno));
+		
+	}
+
 	
 	}
 	

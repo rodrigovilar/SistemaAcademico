@@ -14,18 +14,28 @@ public class SistemaAcademico {
 	private List<Departamento> departamentos = new ArrayList<Departamento>();
 	private List<Curso> cursos = new ArrayList<Curso>();
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
 	private int IDADE_MINIMO = 18;
+	private String matricula;
 	
-		
+	
+	
+	public String gerarMatricula(Aluno aluno){
+      
+		return matricula = aluno.getNome().substring(0,4) + aluno.getCpf().substring(0,3);
+	
+	}
+	  
 	public String validarIdade(Pessoa pessoa) {
 		
 		if(pessoa.getIdade() < IDADE_MINIMO){
 			throw new IdadeInvalidaException("Idade não Permitida, por gentileza informe uma idade acima de 18 anos");
 		}else{
             return"";
-	    }
+	}
 	}
 	public String SituacaoAlunoPorDisciplina(Aluno aluno, Disciplina disciplina, double nota){
+		
 		if(nota >= 5){
 			return "Aprovado";
 		}else{
@@ -35,38 +45,33 @@ public class SistemaAcademico {
 	}
 	public String toString(Aluno aluno,Disciplina disciplina, double nota){
 		
-		String situcaoAtual;
 		
-		situcaoAtual = SituacaoAlunoPorDisciplina(aluno,disciplina,nota);
-		
-		return ("Disciplina: "  +disciplina.getNome()+ ", Nota: " +nota+ " Situação: " +situcaoAtual);
+		return ("Disciplina: "  +disciplina.getNome()+ ", Nota: " +nota+ ", Situação: " +SituacaoAlunoPorDisciplina(aluno,disciplina,nota));
 	}
 	
-	public void addAluno(Aluno novoAluno){
-		validarIdade(novoAluno);
-				
-		for(Aluno alunoAntigo : alunos){
-			if(alunoAntigo != null && 
-					alunoAntigo.getCpf()== novoAluno.getCpf()){
+	
+	public void validarCpfDuplicado(Pessoa novaPessoa){
+					
+		for(Pessoa pessoaAntiga : pessoas){
+			if(pessoaAntiga != null && 
+					pessoaAntiga.getCpf()== novaPessoa.getCpf()){
 				throw new 	CpfDuplicadoException("Cpf ja cadastrado");
 			}
 		}
+		pessoas.add(novaPessoa);
+	}
+	
+	public void addAluno(Aluno novoAluno){
+		gerarMatricula(novoAluno);
+		validarIdade(novoAluno);
+		validarCpfDuplicado(novoAluno);
 		alunos.add(novoAluno);
 	}
 	public void addProfessor(Professor novoProfessor){
 		validarIdade(novoProfessor);
-		
-	   
-		for(Professor professorAntigo : professores){
-			if(professorAntigo != null && 
-					professorAntigo.getCpf()== novoProfessor.getCpf()){
-				throw new 	CpfDuplicadoException("Cpf ja cadastrado");
-			}
-		}
+		validarCpfDuplicado(novoProfessor);
 		professores.add(novoProfessor);
-	
 	}
-	
 	public void addDepartamento(Departamento departamento){
 		departamentos.add(departamento);
 	}
@@ -77,6 +82,12 @@ public class SistemaAcademico {
 	
 	public void addCurso(Curso curso){
 		cursos.add(curso);
+	}
+	public List<Pessoa> getPessoas(){
+		return pessoas;
+	}
+	public List<Professor> getProfessores(){
+		return professores;
 	}
 	
 	public List<Disciplina> getDisciplinas() {
@@ -96,10 +107,6 @@ public class SistemaAcademico {
 		return alunos;
 	}
 	
-	public List<Professor> getProfessores() {
-		return professores;
-	}
-
 	public String getNome(){
 		return nome;
 	}
@@ -124,7 +131,5 @@ public class SistemaAcademico {
 		this.cnpj = cnpj;
 	}
 	
-	
+
 }
-     
-	
