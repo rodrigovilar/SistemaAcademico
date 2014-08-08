@@ -311,7 +311,16 @@ public class SistemaTeste {
 		assertEquals("Lean111",sistemaAcademico.gerarMatricula(aluno));
 		
 	}
-
+	@Test (expected = com.excecoes.ProfessorNomeNuloException.class)
+	public void cadastrandoProfessorNulo(){
+		Professor professor1 = new Professor();
+		Professor professor2 = new Professor();
+		professor1.setNome(null);
+		professor2.setNome("João Pedro");
+		
+		assertEquals("Preencha todos os campos corretamente", sistemaAcademico.validarProfessorNulo(professor1));
+		assertEquals(professor2, sistemaAcademico.getProfessores());
+	}
 	
 	}
 	

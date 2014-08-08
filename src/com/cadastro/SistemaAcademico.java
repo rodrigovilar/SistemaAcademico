@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.excecoes.CpfDuplicadoException;
 import com.excecoes.IdadeInvalidaException;
+import com.excecoes.ProfessorNomeNuloException;
 
 public class SistemaAcademico {
 
@@ -129,6 +130,15 @@ public class SistemaAcademico {
 
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
+	}
+	public String validarProfessorNulo(Professor professor){
+				
+			if(professor.getNome() == null){
+				throw new ProfessorNomeNuloException("Preencha todos os campos corretamente");
+			}else{
+				return " ";
+			}
+			
 	}
 	
 
