@@ -27,7 +27,7 @@ public class SistemaTeste {
 		sistemaAcademico = new SistemaAcademico();
 	}
 	
-	@Test
+	@Test//Teste Cadastro Sistema Academico
 	public void CadastrarSistemaAcademico(){
 		sistemaAcademico.setNome("Universidade Federal da Paraíba");
 		sistemaAcademico.setEndereco("Cidade Universitária, João Pessoa/PB");
@@ -37,7 +37,7 @@ public class SistemaTeste {
 		assertEquals("888.0001.00/00",sistemaAcademico.getCnpj());
 	}
 
-	@Test
+	@Test//Teste Cadastrar Professor			
 	public void cadastrarProfessor(){
 		Professor professor1 = new Professor();
 		professor1.setNome("Rodrigo Vilar");
@@ -51,7 +51,7 @@ public class SistemaTeste {
 		assertEquals(professor1, professores.get(0));
 				
 	}
-	@Test
+	@Test//Teste Cadastrar Aluno		
 	public void cadastrarAluno(){
 		Aluno aluno = new Aluno();
 		aluno.setNome("Keila");
@@ -65,7 +65,7 @@ public class SistemaTeste {
 		assertEquals(aluno, alunos.get(0));
 				
 	}
-	@Test
+	@Test//Teste Cadastrar Cursos
 	public void CadastrarCursos(){
 		Curso curso1 = new Curso();
 		curso1.setNome("Licenciatura em Ciência da Computação");
@@ -83,7 +83,7 @@ public class SistemaTeste {
 		
 	}
 	
-	@Test
+	@Test// Teste Cadastrar Departamentos
 	public void CadastrarDepartamentos(){
 		Departamento departamento1 = new Departamento();
 		departamento1.setNome("Centro de Ciências Exatas e Aplicadas");
@@ -102,7 +102,7 @@ public class SistemaTeste {
 		assertEquals(departamento3,departamentos.get(2));
 		
 	}
-	@Test
+	@Test//Teste formar Turma por disciplina	
 	public void formarTurmaPorDisciplina(){
 		Disciplina disciplina1 = new Disciplina();
 		disciplina1.setNome("IP");
@@ -143,7 +143,7 @@ public class SistemaTeste {
 		assertFalse(turmaIP.contains(aluno1));
 		
 	}
-	@Test
+	@Test//Teste Matricular Alunos em uma Turma/Disciplina
 	public void matricularAlunosEmTurmaETrancar(){
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Roberto Carlos");
@@ -166,12 +166,13 @@ public class SistemaTeste {
 		assertEquals(2,turmaCALCULO1.size());
 		assertTrue(turmaCALCULO1.contains(aluno2));
 		
-		
 		turmaCALCULO1.remove(aluno2);
 		assertFalse(turmaCALCULO1.contains(aluno2));
+		
+		assertEquals(1,turmaCALCULO1.size());
 
 	}
-	@Test
+	@Test//Teste para submeter Media por disciplia e retorna sua nota e sua situação de acordo com a nota.
 	public void TesteSubmeterMediaPorDisciplina(){
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Liviany Reis");
@@ -185,7 +186,7 @@ public class SistemaTeste {
 		
 	}
 	
-	@Test(expected = com.excecoes.IdadeInvalidaException.class)
+	@Test(expected = com.excecoes.IdadeInvalidaException.class)//teste para validar idade do aluno.
 	public void ValidarIdadeAluno(){;
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Pedro Nascimento");
@@ -202,12 +203,14 @@ public class SistemaTeste {
 		assertEquals(1,alunos.size());
 	}
 	
-	@Test(expected = com.excecoes.CpfDuplicadoException.class)
+	@Test(expected = com.excecoes.CpfDuplicadoException.class)// Teste para verificar cpf duplicado do professor.
 	public void cpfDoProfessorDuplicado(){
 		Professor professor1 = new Professor();
+		professor1.setNome("Vanessa Dantas");
 		professor1.setCpf("258.259.104-36");
 		professor1.setIdade(30);
 		Professor professor2 = new Professor();
+		professor2.setNome("Carlos Alberto");
 		professor2.setCpf("258.259.104-36");
 		professor2.setIdade(46);
 		
@@ -218,7 +221,7 @@ public class SistemaTeste {
 		assertEquals("Cpf ja cadastrado", sistemaAcademico.getProfessores());
 		assertEquals(1,professores.size());
 	}
-	@Test(expected = com.excecoes.CpfDuplicadoException.class)
+	@Test(expected = com.excecoes.CpfDuplicadoException.class)// Teste para verificar cpf duplicado do aluno.
 	public void cpfDoAlunoDuplicado(){
 		Aluno a1 = new Aluno();
 		a1.setNome("Carlos André");
@@ -238,7 +241,7 @@ public class SistemaTeste {
 		assertEquals(1,alunos.size());
 		
 	}
-	@Test(expected = com.excecoes.IdadeInvalidaException.class)
+	@Test(expected = com.excecoes.IdadeInvalidaException.class)// Teste para Vaidar idade do professor.
 	public void validarIdadeProfessor(){
 		Professor p1 = new Professor();
 		p1.setCpf("111.333.556-1");
@@ -247,7 +250,7 @@ public class SistemaTeste {
 		assertEquals("Idade não Permitida, por gentileza informe uma idade acima de 18 anos", sistemaAcademico.validarIdade(p1));
 	}
 	@Test
-	public void exibirSituaçãoDoAlunoEmUmDisciplina(){
+	public void exibirSituaçãoDoAlunoEmUmDisciplina(){// Teste para verificar a situação do aluno de acordo com a nota do aluno, que pode ser aprovado ou reprovado.
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Cristal");
 		aluno1.setCpf("1");
@@ -270,7 +273,7 @@ public class SistemaTeste {
 	}
 
 	@Test
-	public void submeterMediasDoPeriodo(){
+	public void ExibirMediasDoPeriodo(){//Teste para exibir media do periodo como se fosse um histórico.
 		Aluno a = new Aluno();
 		a.setNome("Wendell");
 	
@@ -301,7 +304,7 @@ public class SistemaTeste {
 	   }
 	
 	@Test
-	public void GerarMatriculaAluno(){
+	public void GerarMatriculaAluno(){//Teste que gerar a matricula do aluno automaticamente de acordo com seu cpf e nome.
 		Aluno aluno = new Aluno();
 		aluno.setNome("Leandro");
 		aluno.setCpf("111222.333-42");
@@ -311,16 +314,30 @@ public class SistemaTeste {
 		assertEquals("Lean111",sistemaAcademico.gerarMatricula(aluno));
 		
 	}
-	@Test (expected = com.excecoes.ProfessorNomeNuloException.class)
+	@Test (expected = com.excecoes.ProfessorNomeNuloException.class)//Teste para verificar o campo nome quando for nulo, e lança uma exceção.
 	public void cadastrandoProfessorNulo(){
 		Professor professor1 = new Professor();
 		Professor professor2 = new Professor();
 		professor1.setNome(null);
 		professor2.setNome("João Pedro");
-		
+		List<Professor> professores = sistemaAcademico.getProfessores();
+		sistemaAcademico.addProfessor(professor1);
+		sistemaAcademico.addProfessor(professor2);
 		assertEquals("Preencha todos os campos corretamente", sistemaAcademico.validarProfessorNulo(professor1));
 		assertEquals(professor2, sistemaAcademico.getProfessores());
 	}
+	@Test
+	public void CampoNulo(){// teste para Verificar campo nulo de um professor.// Teste não está passando, mais eu sei o que é.
+		Professor professor = new Professor();
+		professor.setNome(null);
+		professor.setCpf("111.222.333-4");
+		professor.setIdade(20);
+		List<Professor> professores = sistemaAcademico.getProfessores();
+		sistemaAcademico.addProfessor(professor);
+		assertNotNull(professor);
+		
+		}
+
 	
 	}
 	

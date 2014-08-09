@@ -44,6 +44,14 @@ public class SistemaAcademico {
 			
 		}
 	}
+	public String validarProfessorNulo(Professor professor){
+				
+			if(professor.getNome() == null ){
+				throw new ProfessorNomeNuloException("Preencha todos os campos corretamente");
+			}else{
+				return " ";
+			}
+	}
 	public String toString(Aluno aluno,Disciplina disciplina, double nota){
 		
 		
@@ -69,6 +77,7 @@ public class SistemaAcademico {
 		alunos.add(novoAluno);
 	}
 	public void addProfessor(Professor novoProfessor){
+		validarProfessorNulo(novoProfessor);
 		validarIdade(novoProfessor);
 		validarCpfDuplicado(novoProfessor);
 		professores.add(novoProfessor);
@@ -131,15 +140,7 @@ public class SistemaAcademico {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	public String validarProfessorNulo(Professor professor){
-				
-			if(professor.getNome() == null){
-				throw new ProfessorNomeNuloException("Preencha todos os campos corretamente");
-			}else{
-				return " ";
-			}
+	
 			
 	}
 	
-
-}
