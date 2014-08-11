@@ -5,8 +5,11 @@ import java.util.List;
 
 public class Turma {
 	
+	
 	private Disciplina disciplina;
 	private List<Aluno> alunos = new ArrayList<Aluno>();
+	
+	
 	
 	public Disciplina getDisciplina() {
 		return disciplina;

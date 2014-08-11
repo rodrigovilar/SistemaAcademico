@@ -103,45 +103,57 @@ public class SistemaTeste {
 		assertEquals(departamento3,departamentos.get(2));
 		
 	}
-	@Test//Teste formar Turma por disciplina	
-	public void formarTurmaPorDisciplina(){
+	@Test//Teste formar Turma por disciplina e remover 	
+	public void formarTurmaPorDisciplinaeRemoverdaLista(){
+		Turma t1 = new Turma();
 		Disciplina disciplina1 = new Disciplina();
 		disciplina1.setNome("IP");
+		disciplina1.setCargaHoraria(60);
+		disciplina1.setCreditos(6);
+		
+		t1.setDisciplina(disciplina1);
+		
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Carlos André");
 		aluno1.setIdade(20);
 		aluno1.setCpf("111.222.333-4");
+		
 		Aluno aluno2 = new Aluno();
 		aluno2.setNome("Fernanda Karla");
 		aluno2.setIdade(30);
 		aluno2.setCpf("111.222.325-7");
+		
 		Aluno aluno3 = new Aluno();
 		aluno3.setNome("João Felipe");
 		aluno3.setIdade(21);
 		aluno3.setCpf("111.022.333-8");
+		
 		Aluno aluno4 = new Aluno();
 		aluno4.setNome("Maria Glaúdia");
 		aluno4.setIdade(23);
 		aluno4.setCpf("121.002.703-4");
 		
-		List <Aluno> turmaIP = sistemaAcademico.getAlunos();
-		sistemaAcademico.addAluno(aluno1);
-		sistemaAcademico.addAluno(aluno2);
-		sistemaAcademico.addAluno(aluno3);
-		sistemaAcademico.addAluno(aluno4);
-		assertEquals(2,turmaIP.indexOf(aluno3));
-		assertEquals(0,turmaIP.indexOf(aluno1));
-		assertEquals(1,turmaIP.indexOf(aluno2));
-		assertEquals(3,turmaIP.indexOf(aluno4));
-		assertEquals(4,turmaIP.size());
+		List<Aluno> alunos = t1.getAlunos();
+		t1.addAluno(aluno1);
+		t1.addAluno(aluno2);
+		t1.addAluno(aluno3);
+		t1.addAluno(aluno4);
 		
-		turmaIP.remove(aluno1);
+		sistemaAcademico.setTurma(t1);
 		
-		assertTrue(turmaIP.contains(aluno2));
-		assertTrue(turmaIP.contains(aluno3));
-		assertTrue(turmaIP.contains(aluno4));
+		assertEquals(2,alunos.indexOf(aluno3));
+		assertEquals(0,alunos.indexOf(aluno1));
+		assertEquals(1,alunos.indexOf(aluno2));
+		assertEquals(3,alunos.indexOf(aluno4));
+		assertEquals(4,alunos.size());
 		
-		assertFalse(turmaIP.contains(aluno1));
+		alunos.remove(aluno1);
+		
+		assertTrue(alunos.contains(aluno2));
+		assertTrue(alunos.contains(aluno3));
+		assertTrue(alunos.contains(aluno4));
+		
+		assertFalse(alunos.contains(aluno1));
 		
 	}
 	@Test//Teste Matricular Alunos em uma Turma/Disciplina
