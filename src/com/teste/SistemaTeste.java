@@ -58,6 +58,7 @@ public class SistemaTeste {
 		aluno.setNome("Keila");
 		aluno.setIdade(19);
 		aluno.setCpf("111.222.333-4");
+		aluno.setEndereco("Rua Epitácio");
 		sistemaAcademico.gerarMatricula(aluno);
 		List <Aluno> alunos = sistemaAcademico.getAlunos();
 		sistemaAcademico.addAluno(aluno);
@@ -103,16 +104,22 @@ public class SistemaTeste {
 		assertEquals(departamento3,departamentos.get(2));
 		
 	}
-	@Test//Teste formar Turma por disciplina e remover 	
+	@Test//Teste formar Turma por disciplina e depois removendo aluno de uma disciplina.
 	public void formarTurmaPorDisciplinaeRemoverdaLista(){
-		Turma t1 = new Turma();
+		Turma turma1 = new Turma();
 		Disciplina disciplina1 = new Disciplina();
 		disciplina1.setNome("IP");
 		disciplina1.setCargaHoraria(60);
 		disciplina1.setCreditos(6);
 		
-		t1.setDisciplina(disciplina1);
+		Disciplina disciplina2 = new Disciplina();
+		disciplina2.setNome("Matemática Elementar");
+		disciplina2.setCargaHoraria(60);
+		disciplina2.setCreditos(6);
 		
+		turma1.setDisciplina(disciplina1);
+		sistemaAcademico.setTurma(turma1);
+				
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Carlos André");
 		aluno1.setIdade(20);
@@ -123,36 +130,19 @@ public class SistemaTeste {
 		aluno2.setIdade(30);
 		aluno2.setCpf("111.222.325-7");
 		
-		Aluno aluno3 = new Aluno();
-		aluno3.setNome("João Felipe");
-		aluno3.setIdade(21);
-		aluno3.setCpf("111.022.333-8");
+		List<Aluno> alunos= turma1.getAlunos();
+		turma1.addAluno(aluno1);
+		turma1.addAluno(aluno2);
 		
-		Aluno aluno4 = new Aluno();
-		aluno4.setNome("Maria Glaúdia");
-		aluno4.setIdade(23);
-		aluno4.setCpf("121.002.703-4");
-		
-		List<Aluno> alunos = t1.getAlunos();
-		t1.addAluno(aluno1);
-		t1.addAluno(aluno2);
-		t1.addAluno(aluno3);
-		t1.addAluno(aluno4);
-		
-		sistemaAcademico.setTurma(t1);
-		
-		assertEquals(2,alunos.indexOf(aluno3));
 		assertEquals(0,alunos.indexOf(aluno1));
 		assertEquals(1,alunos.indexOf(aluno2));
-		assertEquals(3,alunos.indexOf(aluno4));
-		assertEquals(4,alunos.size());
+		assertEquals(2,alunos.size());
 		
 		alunos.remove(aluno1);
 		
 		assertTrue(alunos.contains(aluno2));
-		assertTrue(alunos.contains(aluno3));
-		assertTrue(alunos.contains(aluno4));
 		
+		assertEquals(turma1,sistemaAcademico.getTurma());
 		assertFalse(alunos.contains(aluno1));
 		
 	}
@@ -179,6 +169,9 @@ public class SistemaTeste {
 		t1.addAluno(aluno2);
 		
 		sistemaAcademico.setTurma(t1);
+		sistemaAcademico.setTurma(t1);
+		assertEquals(t1,sistemaAcademico.getTurma());
+		
 		
 		assertEquals(2,alunos.size());
 		assertTrue(alunos.contains(aluno2));
@@ -205,27 +198,39 @@ public class SistemaTeste {
 		aluno1.setNome("Pedro Nascimento");
 		aluno1.setCpf("222.222.333-2");
 		aluno1.setIdade(18);
+		aluno1.setEndereco("Rua Getúlio Vargas");
 		Aluno aluno2 = new Aluno();
 		aluno2.setNome("Pedro Nascimento");
 		aluno2.setCpf("222.222.333-2");
 		aluno2.setIdade(16);
+		aluno2.setEndereco("Rua Emiliano");
 		List<Aluno> alunos = sistemaAcademico.getAlunos();
 		sistemaAcademico.addAluno(aluno1);
 		sistemaAcademico.addAluno(aluno2);
 		assertEquals("Idade não Permitida, por gentileza informe uma idade acima de 18 anos", sistemaAcademico.validarIdade(aluno2));
 		assertEquals(1,alunos.size());
 	}
-	
+	@Test(expected = com.excecoes.IdadeInvalidaException.class)// Teste para Validar idade do professor.
+	public void validarIdadeProfessor(){
+		Professor p1 = new Professor();
+		p1.setNome("Carlos Alberto");
+		p1.setCpf("111.333.556-1");
+		p1.setIdade(14);
+		
+		assertEquals("Idade não Permitida, por gentileza informe uma idade acima de 18 anos", sistemaAcademico.validarIdade(p1));
+	}
 	@Test(expected = com.excecoes.CpfDuplicadoException.class)// Teste para verificar cpf duplicado do professor.
 	public void cpfDoProfessorDuplicado(){
 		Professor professor1 = new Professor();
 		professor1.setNome("Vanessa Dantas");
 		professor1.setCpf("258.259.104-36");
 		professor1.setIdade(30);
+		professor1.setEndereco("Rua Beira Rio");
 		Professor professor2 = new Professor();
 		professor2.setNome("Carlos Alberto");
 		professor2.setCpf("258.259.104-36");
 		professor2.setIdade(46);
+		professor2.setEndereco("Rua Cruz das Armas");
 		
 		List<Professor> professores = sistemaAcademico.getProfessores();
 		sistemaAcademico.addProfessor(professor1);
@@ -240,11 +245,13 @@ public class SistemaTeste {
 		a1.setNome("Carlos André");
 		a1.setIdade(23);
 		a1.setCpf("324.444.111-0");
+		a1.setEndereco("Rua Beira Rio");
 		
 		Aluno a2 = new Aluno();
 		a2.setNome("Felipe Augusto");
 		a2.setIdade(20);
 		a2.setCpf("324.444.111-0");
+		a2.setEndereco("Rua Epitácio");
 		
 		List<Aluno> alunos = sistemaAcademico.getAlunos();
 		sistemaAcademico.addAluno(a1);
@@ -254,14 +261,7 @@ public class SistemaTeste {
 		assertEquals(1,alunos.size());
 		
 	}
-	@Test(expected = com.excecoes.IdadeInvalidaException.class)// Teste para Vaidar idade do professor.
-	public void validarIdadeProfessor(){
-		Professor p1 = new Professor();
-		p1.setCpf("111.333.556-1");
-		p1.setIdade(14);
-		
-		assertEquals("Idade não Permitida, por gentileza informe uma idade acima de 18 anos", sistemaAcademico.validarIdade(p1));
-	}
+	
 	@Test
 	public void exibirSituaçãoDoAlunoEmUmDisciplina(){// Teste para verificar a situação do aluno de acordo com a nota do aluno, que pode ser aprovado ou reprovado.
 		Aluno aluno1 = new Aluno();
@@ -327,15 +327,15 @@ public class SistemaTeste {
 		assertEquals("Lean111",sistemaAcademico.gerarMatricula(aluno));
 		
 	}
-	@Test (expected = com.excecoes.ProfessorNomeNuloException.class)//Teste para verificar o campo nome quando for nulo, e lança uma exceção.
-	public void cadastrandoProfessorNulo(){
+	@Test (expected = com.excecoes.PessoaNomeNuloException.class)//Teste para verificar o campo nome do professor quando for nulo e lançar uma exceção.
+	public void TesteNomeProfessorNulo(){
 		Professor professor1 = new Professor();
 		professor1.setNome(null);
 		List<Professor> professores = sistemaAcademico.getProfessores();
 		sistemaAcademico.addProfessor(professor1);
-		assertEquals("Preencha todos os campos corretamente", sistemaAcademico.validarProfessorNulo(professor1));
+		assertEquals("Preencha todos os campos corretamente", sistemaAcademico.validarNomeNulo(professor1));
 	}
-	@Test (expected = com.excecoes.PessoaSexoNuloException.class)
+	@Test (expected = com.excecoes.PessoaSexoNuloException.class)//Teste para verificar o campo Sexo quando for diferente de feminino ou masculino, e lança uma exceção.
 	public void alunoComSexoIncorreto(){
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("João");
@@ -343,7 +343,7 @@ public class SistemaTeste {
 		
 		assertEquals("Campo 'Sexo' preenchido incorretamente", sistemaAcademico.validarSexoNulo(aluno1));
 	}
-	@Test (expected = com.excecoes.PessoaSexoNuloException.class)
+	@Test (expected = com.excecoes.PessoaSexoNuloException.class)//Teste para verificar o campo sexo quando for nulo, e lança uma exceção.
 	public void alunoComSexoNulo(){
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Cristal");
@@ -351,7 +351,7 @@ public class SistemaTeste {
 		
 		assertEquals("Campo 'Sexo' preenchido incorretamente", sistemaAcademico.validarSexoNulo(aluno1));
 	}
-	@Test (expected = com.excecoes.PessoaSexoNuloException.class)
+	@Test (expected = com.excecoes.PessoaSexoNuloException.class)//Teste para verificar o campo Sexo quando for diferente de feminino ou masculino e lançar uma exceção.
 	public void professorComSexoIncorreto(){
 		Professor professor1 = new Professor();
 		professor1.setNome("Rodrigo");
@@ -359,7 +359,7 @@ public class SistemaTeste {
 		
 		assertEquals("Campo 'Sexo' preenchido incorretamente", sistemaAcademico.validarSexoNulo(professor1));
 	}	
-	@Test (expected = com.excecoes.PessoaSexoNuloException.class)
+	@Test (expected = com.excecoes.PessoaSexoNuloException.class)//Teste para verificar o campo Sexo do  professor quando for nulo e lança uma exceção.
 	public void professorComSexoNulo(){
 		Professor p1 = new Professor();
 		p1.setNome("Carlos Alberto");
@@ -367,7 +367,7 @@ public class SistemaTeste {
 		
 		assertEquals("Campo 'Sexo' preenchido incorretamente", sistemaAcademico.validarSexoNulo(p1));
 	}
-	@Test (expected = com.excecoes.PessoaCpfNuloException.class)
+	@Test (expected = com.excecoes.PessoaCpfNuloException.class)//Teste para verificar o campo CPF do aluno quando for nulo e lançar uma exceção.
 	public void alunoCpfNulo(){
 		Aluno a1 = new Aluno();
 		a1.setNome("Liviany");
@@ -375,7 +375,7 @@ public class SistemaTeste {
 		
 		assertEquals("Campo 'CPF' não preenchido", sistemaAcademico.validarCpfNulo(a1));
 	}
-	@Test (expected = com.excecoes.PessoaCpfNuloException.class)
+	@Test (expected = com.excecoes.PessoaCpfNuloException.class)//Teste para verificar o campo CPF do Professor quando for nulo e lançar uma exceção.
 	public void professorCpfNulo(){
 		Professor p1 = new Professor();
 		p1.setNome("Rossana");
@@ -384,26 +384,23 @@ public class SistemaTeste {
 		assertEquals("Campo 'CPF' não preenchido", sistemaAcademico.validarCpfNulo(p1));
 		
 	}
-	@Test (expected = com.excecoes.PessoaEnderecoNuloException.class)
+	@Test (expected = com.excecoes.PessoaEnderecoNuloException.class)//Teste para verificar o campo Endereço do aluno quando for nulo e lançar uma exceção.
 	public void alunoEnderecoNulo(){
 		Aluno a1 = new Aluno();
 		a1.setNome("Antonio");
 		a1.setEndereco(null);
 		
-		assertEquals("'Endereço' não preenchido corretamente", sistemaAcademico.EnderecoNulo(a1));
+		assertEquals("'Endereço' não preenchido corretamente", sistemaAcademico.validarEnderecoNulo(a1));
 	}
-	@Test (expected = com.excecoes.PessoaEnderecoNuloException.class)
+	@Test (expected = com.excecoes.PessoaEnderecoNuloException.class)//Teste para verificar o campo Endereço do professor quando for nulo e lançar uma exceção.
 	public void professorEnderecoNulo(){
 		Professor p1 = new Professor();
 		p1.setNome("Joelson");
 		p1.setEndereco(null);
 		
-		assertEquals("'Endereço' não preenchido corretamente", sistemaAcademico.EnderecoNulo(p1));
+		assertEquals("'Endereço' não preenchido corretamente", sistemaAcademico.validarEnderecoNulo(p1));
 	}
 
-
-	
-	
-	}
+}
 	
 	

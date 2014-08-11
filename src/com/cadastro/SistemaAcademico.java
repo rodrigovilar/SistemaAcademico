@@ -1,14 +1,16 @@
 package com.cadastro;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import com.excecoes.CpfDuplicadoException;
 import com.excecoes.IdadeInvalidaException;
 import com.excecoes.PessoaCpfNuloException;
 import com.excecoes.PessoaEnderecoNuloException;
+import com.excecoes.PessoaNomeNuloException;
 import com.excecoes.PessoaSexoNuloException;
-import com.excecoes.ProfessorNomeNuloException;
+
 
 public class SistemaAcademico {
 
@@ -48,14 +50,40 @@ public class SistemaAcademico {
 			
 		}
 	}
-	public String validarProfessorNulo(Professor professor){
+	
+	public String validarNomeNulo(Pessoa pessoa){
 				
-			if(professor.getNome() == null ){
-				throw new ProfessorNomeNuloException("Preencha todos os campos corretamente");
+			if(pessoa.getNome() == null ){
+				throw new PessoaNomeNuloException("Preencha todos os campos corretamente");
 			}else{
 				return " ";
 			}
 	}
+	
+	public String validarSexoNulo(Pessoa pessoa){
+		if(pessoa.getSexo() == null){
+			throw new PessoaSexoNuloException("Campo'Sexo' não preenchido corretamente");
+		}else if(pessoa.getSexo() != "Feminino" | pessoa.getSexo() != "Masculino"){
+			throw new PessoaSexoNuloException("Campo 'Sexo' preenchido incorretamente");
+		}else{
+			return " ";
+		}
+		}
+	public String validarCpfNulo(Pessoa pessoa){
+		if(pessoa.getCpf()== null){
+			throw new PessoaCpfNuloException("Campo 'CPF' não preenchido");
+		}else{
+			return " ";
+		}
+	}
+	public String validarEnderecoNulo(Pessoa pessoa){
+		if(pessoa.getEndereco()== null){
+			throw new PessoaEnderecoNuloException("'Endereço' não preenchido corretamente");
+		}else{
+			return " ";
+		}
+	}
+
 	public String toString(Aluno aluno,Disciplina disciplina, double nota){
 		
 		
@@ -78,12 +106,14 @@ public class SistemaAcademico {
 		gerarMatricula(novoAluno);
 		validarIdade(novoAluno);
 		validarCpfDuplicado(novoAluno);
+		validarEnderecoNulo(novoAluno);
 		alunos.add(novoAluno);
 	}
 	public void addProfessor(Professor novoProfessor){
-		validarProfessorNulo(novoProfessor);
+		validarNomeNulo(novoProfessor);
 		validarIdade(novoProfessor);
 		validarCpfDuplicado(novoProfessor);
+		validarEnderecoNulo(novoProfessor);
 		professores.add(novoProfessor);
 	}
 	
@@ -151,29 +181,6 @@ public class SistemaAcademico {
 	public void setTurma(Turma turma){
 		this.turma = turma;
 	}
-	public String validarSexoNulo(Pessoa pessoa){
-		if(pessoa.getSexo() == null){
-			throw new PessoaSexoNuloException("Campo'Sexo' não preenchido corretamente");
-		}else if(pessoa.getSexo() != "Feminino" | pessoa.getSexo() != "Masculino"){
-			throw new PessoaSexoNuloException("Campo 'Sexo' preenchido incorretamente");
-		}else{
-			return " ";
-		}
-		}
-	public String validarCpfNulo(Pessoa pessoa){
-		if(pessoa.getCpf()== null){
-			throw new PessoaCpfNuloException("Campo 'CPF' não preenchido");
-		}else{
-			return " ";
-		}
-	}
-	public String EnderecoNulo(Pessoa pessoa){
-		if(pessoa.getEndereco()== null){
-			throw new PessoaEnderecoNuloException("'Endereço' não preenchido corretamente");
-		}else{
-			return " ";
-		}
-	}
-
-	}
+}
+	
 	
