@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.excecoes.CpfDuplicadoException;
 import com.excecoes.IdadeInvalidaException;
+import com.excecoes.PessoaSexoNuloException;
 import com.excecoes.ProfessorNomeNuloException;
 
 public class SistemaAcademico {
@@ -148,5 +149,15 @@ public class SistemaAcademico {
 	public void setTurma(Turma turma){
 		this.turma = turma;
 	}
+	public String validarSexoNulo(Pessoa pessoa){
+		if(pessoa.getSexo() == null){
+			throw new PessoaSexoNuloException("Campo'Sexo' não preenchido corretamente");
+		}else if(pessoa.getSexo() != "Feminino" | pessoa.getSexo() != "Masculino"){
+			throw new PessoaSexoNuloException("Campo 'Sexo' preenchido incorretamente");
+		}else{
+			return " ";
+		}
+		}
+
 	}
 	

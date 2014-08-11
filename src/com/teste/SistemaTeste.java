@@ -330,16 +330,26 @@ public class SistemaTeste {
 	@Test (expected = com.excecoes.ProfessorNomeNuloException.class)//Teste para verificar o campo nome quando for nulo, e lança uma exceção.
 	public void cadastrandoProfessorNulo(){
 		Professor professor1 = new Professor();
-		Professor professor2 = new Professor();
 		professor1.setNome(null);
-		professor2.setNome("João Pedro");
 		List<Professor> professores = sistemaAcademico.getProfessores();
 		sistemaAcademico.addProfessor(professor1);
-		sistemaAcademico.addProfessor(professor2);
 		assertEquals("Preencha todos os campos corretamente", sistemaAcademico.validarProfessorNulo(professor1));
-		assertEquals(professor2, sistemaAcademico.getProfessores());
 	}
-	
+	@Test (expected = com.excecoes.PessoaSexoNuloException.class)
+	public void alunoComSexoIncorreto(){
+		Aluno aluno1 = new Aluno();
+		aluno1.setSexo("Gato");
+		
+		assertEquals("Campo 'Sexo' preenchido incorretamente", sistemaAcademico.validarSexoNulo(aluno1));
+	}
+	@Test (expected = com.excecoes.PessoaSexoNuloException.class)
+	public void professorComSexoIncorreto(){
+		Professor professor1 = new Professor();
+		professor1.setSexo("Mulher");
+		
+		assertEquals("Campo 'Sexo' preenchido incorretamente", sistemaAcademico.validarSexoNulo(professor1));
+	}
+
 	
 	
 	}
