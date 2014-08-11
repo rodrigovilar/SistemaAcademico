@@ -16,6 +16,7 @@ public class SistemaAcademico {
 	private List<Curso> cursos = new ArrayList<Curso>();
 	private List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 	private List<Pessoa> pessoas = new ArrayList<Pessoa>();
+	private Turma turma;
 	private int IDADE_MINIMO = 18;
 	private String matricula;
 	
@@ -82,6 +83,7 @@ public class SistemaAcademico {
 		validarCpfDuplicado(novoProfessor);
 		professores.add(novoProfessor);
 	}
+	
 	public void addDepartamento(Departamento departamento){
 		departamentos.add(departamento);
 	}
@@ -140,7 +142,11 @@ public class SistemaAcademico {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	
-			
+	public Turma getTurma(){
+		return turma;
+	}
+	public void setTurma(Turma turma){
+		this.turma = turma;
+	}
 	}
 	

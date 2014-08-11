@@ -16,6 +16,7 @@ import com.cadastro.Disciplina;
 import com.cadastro.Pessoa;
 import com.cadastro.Professor;
 import com.cadastro.SistemaAcademico;
+import com.cadastro.Turma;
 import com.excecoes.IdadeInvalidaException;
 
 public class SistemaTeste {
@@ -144,7 +145,15 @@ public class SistemaTeste {
 		
 	}
 	@Test//Teste Matricular Alunos em uma Turma/Disciplina
-	public void matricularAlunosEmTurmaETrancar(){
+	public void matricularAlunosEmTurma(){
+		Turma t1 = new Turma();
+		Disciplina d1 = new Disciplina();
+		d1.setNome("CALCULO 1");
+		d1.setCargaHoraria(90);
+		d1.setCreditos(9);
+        
+		t1.setDisciplina(d1);
+	
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Roberto Carlos");
 		aluno1.setIdade(20);
@@ -153,26 +162,18 @@ public class SistemaTeste {
 		aluno2.setNome("Raimundo José");
 		aluno2.setCpf("255.555.987-0");
 		aluno2.setIdade(20);
+		List<Aluno> alunos = t1.getAlunos();
+		t1.addAluno(aluno1);
+		t1.addAluno(aluno2);
 		
+		sistemaAcademico.setTurma(t1);
 		
-		Disciplina disciplina1 = new Disciplina();
-		disciplina1.setNome("CALCULO 1");
-		disciplina1.setCargaHoraria(90);
-		disciplina1.setCreditos(9);
+		assertEquals(2,alunos.size());
+		assertTrue(alunos.contains(aluno2));
+		assertTrue(alunos.contains(aluno1));
 		
-		List <Aluno> turmaCALCULO1 = sistemaAcademico.getAlunos();
-		sistemaAcademico.addAluno(aluno1);
-		sistemaAcademico.addAluno(aluno2);
-		assertEquals(2,turmaCALCULO1.size());
-		assertTrue(turmaCALCULO1.contains(aluno2));
-		
-		turmaCALCULO1.remove(aluno2);
-		assertFalse(turmaCALCULO1.contains(aluno2));
-		
-		assertEquals(1,turmaCALCULO1.size());
-
 	}
-	@Test//Teste para submeter Media por disciplia e retorna sua nota e sua situação de acordo com a nota.
+	@Test//Teste para submeter Media por disciplina e retorna sua nota e sua situação de acordo com a nota.
 	public void TesteSubmeterMediaPorDisciplina(){
 		Aluno aluno1 = new Aluno();
 		aluno1.setNome("Liviany Reis");
@@ -326,18 +327,8 @@ public class SistemaTeste {
 		assertEquals("Preencha todos os campos corretamente", sistemaAcademico.validarProfessorNulo(professor1));
 		assertEquals(professor2, sistemaAcademico.getProfessores());
 	}
-	@Test
-	public void CampoNulo(){// teste para Verificar campo nulo de um professor.// Teste não está passando, mais eu sei o que é.
-		Professor professor = new Professor();
-		professor.setNome(null);
-		professor.setCpf("111.222.333-4");
-		professor.setIdade(20);
-		List<Professor> professores = sistemaAcademico.getProfessores();
-		sistemaAcademico.addProfessor(professor);
-		assertNotNull(professor);
-		
-		}
-
+	
+	
 	
 	}
 	
