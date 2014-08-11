@@ -343,11 +343,40 @@ public class SistemaTeste {
 		assertEquals("Campo 'Sexo' preenchido incorretamente", sistemaAcademico.validarSexoNulo(aluno1));
 	}
 	@Test (expected = com.excecoes.PessoaSexoNuloException.class)
+	public void alunoComSexoNulo(){
+		Aluno aluno1 = new Aluno();
+		aluno1.setSexo(null);
+		
+		assertEquals("Campo 'Sexo' preenchido incorretamente", sistemaAcademico.validarSexoNulo(aluno1));
+	}
+	@Test (expected = com.excecoes.PessoaSexoNuloException.class)
 	public void professorComSexoIncorreto(){
 		Professor professor1 = new Professor();
 		professor1.setSexo("Mulher");
 		
 		assertEquals("Campo 'Sexo' preenchido incorretamente", sistemaAcademico.validarSexoNulo(professor1));
+	}	
+	@Test (expected = com.excecoes.PessoaSexoNuloException.class)
+	public void professorComSexoNulo(){
+		Professor p1 = new Professor();
+		p1.setSexo(null);
+		
+		assertEquals("Campo 'Sexo' preenchido incorretamente", sistemaAcademico.validarSexoNulo(p1));
+	}
+	@Test (expected = com.excecoes.PessoaCpfNuloException.class)
+	public void alunoCpfNulo(){
+		Aluno a1 = new Aluno();
+		a1.setCpf(null);
+		
+		assertEquals("Campo 'CPF' não preenchido", sistemaAcademico.validarCpfNulo(a1));
+	}
+	@Test (expected = com.excecoes.PessoaCpfNuloException.class)
+	public void professorCpfNulo(){
+		Professor p1 = new Professor();
+		p1.setCpf(null);
+		
+		assertEquals("Campo 'CPF' não preenchido", sistemaAcademico.validarCpfNulo(p1));
+		
 	}
 
 	
