@@ -378,6 +378,21 @@ public class SistemaTeste {
 		assertEquals("Campo 'CPF' não preenchido", sistemaAcademico.validarCpfNulo(p1));
 		
 	}
+	@Test (expected = com.excecoes.PessoaEnderecoNuloException.class)
+	public void alunoEnderecoNulo(){
+		Aluno a1 = new Aluno();
+		a1.setEndereco(null);
+		
+		assertEquals("'Endereço' não preenchido corretamente", sistemaAcademico.EndereçoNulo(a1));
+	}
+	@Test (expected = com.excecoes.PessoaEnderecoNuloException.class)
+	public void professorEnderecoNulo(){
+		Professor p1 = new Professor();
+		p1.setEndereco(null);
+		
+		assertEquals("'Endereço' não preenchido corretamente", sistemaAcademico.EndereçoNulo(p1));
+	}
+
 
 	
 	

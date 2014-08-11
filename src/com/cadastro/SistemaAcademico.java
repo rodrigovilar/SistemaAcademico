@@ -6,6 +6,7 @@ import java.util.List;
 import com.excecoes.CpfDuplicadoException;
 import com.excecoes.IdadeInvalidaException;
 import com.excecoes.PessoaCpfNuloException;
+import com.excecoes.PessoaEnderecoNuloException;
 import com.excecoes.PessoaSexoNuloException;
 import com.excecoes.ProfessorNomeNuloException;
 
@@ -162,6 +163,13 @@ public class SistemaAcademico {
 	public String validarCpfNulo(Pessoa pessoa){
 		if(pessoa.getCpf()== null){
 			throw new PessoaCpfNuloException("Campo 'CPF' não preenchido");
+		}else{
+			return " ";
+		}
+	}
+	public String EndereçoNulo(Pessoa pessoa){
+		if(pessoa.getEndereco()== null){
+			throw new PessoaEnderecoNuloException("'Endereço' não preenchido corretamente");
 		}else{
 			return " ";
 		}
