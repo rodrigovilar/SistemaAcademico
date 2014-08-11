@@ -338,6 +338,7 @@ public class SistemaTeste {
 	@Test (expected = com.excecoes.PessoaSexoNuloException.class)
 	public void alunoComSexoIncorreto(){
 		Aluno aluno1 = new Aluno();
+		aluno1.setNome("João");
 		aluno1.setSexo("Gato");
 		
 		assertEquals("Campo 'Sexo' preenchido incorretamente", sistemaAcademico.validarSexoNulo(aluno1));
@@ -345,6 +346,7 @@ public class SistemaTeste {
 	@Test (expected = com.excecoes.PessoaSexoNuloException.class)
 	public void alunoComSexoNulo(){
 		Aluno aluno1 = new Aluno();
+		aluno1.setNome("Cristal");
 		aluno1.setSexo(null);
 		
 		assertEquals("Campo 'Sexo' preenchido incorretamente", sistemaAcademico.validarSexoNulo(aluno1));
@@ -352,6 +354,7 @@ public class SistemaTeste {
 	@Test (expected = com.excecoes.PessoaSexoNuloException.class)
 	public void professorComSexoIncorreto(){
 		Professor professor1 = new Professor();
+		professor1.setNome("Rodrigo");
 		professor1.setSexo("Mulher");
 		
 		assertEquals("Campo 'Sexo' preenchido incorretamente", sistemaAcademico.validarSexoNulo(professor1));
@@ -359,6 +362,7 @@ public class SistemaTeste {
 	@Test (expected = com.excecoes.PessoaSexoNuloException.class)
 	public void professorComSexoNulo(){
 		Professor p1 = new Professor();
+		p1.setNome("Carlos Alberto");
 		p1.setSexo(null);
 		
 		assertEquals("Campo 'Sexo' preenchido incorretamente", sistemaAcademico.validarSexoNulo(p1));
@@ -366,6 +370,7 @@ public class SistemaTeste {
 	@Test (expected = com.excecoes.PessoaCpfNuloException.class)
 	public void alunoCpfNulo(){
 		Aluno a1 = new Aluno();
+		a1.setNome("Liviany");
 		a1.setCpf(null);
 		
 		assertEquals("Campo 'CPF' não preenchido", sistemaAcademico.validarCpfNulo(a1));
@@ -373,6 +378,7 @@ public class SistemaTeste {
 	@Test (expected = com.excecoes.PessoaCpfNuloException.class)
 	public void professorCpfNulo(){
 		Professor p1 = new Professor();
+		p1.setNome("Rossana");
 		p1.setCpf(null);
 		
 		assertEquals("Campo 'CPF' não preenchido", sistemaAcademico.validarCpfNulo(p1));
@@ -381,16 +387,18 @@ public class SistemaTeste {
 	@Test (expected = com.excecoes.PessoaEnderecoNuloException.class)
 	public void alunoEnderecoNulo(){
 		Aluno a1 = new Aluno();
+		a1.setNome("Antonio");
 		a1.setEndereco(null);
 		
-		assertEquals("'Endereço' não preenchido corretamente", sistemaAcademico.EndereçoNulo(a1));
+		assertEquals("'Endereço' não preenchido corretamente", sistemaAcademico.EnderecoNulo(a1));
 	}
 	@Test (expected = com.excecoes.PessoaEnderecoNuloException.class)
 	public void professorEnderecoNulo(){
 		Professor p1 = new Professor();
+		p1.setNome("Joelson");
 		p1.setEndereco(null);
 		
-		assertEquals("'Endereço' não preenchido corretamente", sistemaAcademico.EndereçoNulo(p1));
+		assertEquals("'Endereço' não preenchido corretamente", sistemaAcademico.EnderecoNulo(p1));
 	}
 
 

@@ -167,7 +167,7 @@ public class SistemaAcademico {
 			return " ";
 		}
 	}
-	public String EndereçoNulo(Pessoa pessoa){
+	public String EnderecoNulo(Pessoa pessoa){
 		if(pessoa.getEndereco()== null){
 			throw new PessoaEnderecoNuloException("'Endereço' não preenchido corretamente");
 		}else{
